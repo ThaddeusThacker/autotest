@@ -13,14 +13,15 @@ public class ClickVerificationTest extends BaseTest {
 	
 	public Boolean test(SearchContext searchContext){
 		
-		element = getWebElement(searchContext);
-		
-		try{
-			
+		try
+		{
+			element = getWebElement(searchContext);			
 			element.click();
 			
 			
-		}catch(Exception ex){
+		}
+		catch(Exception ex)
+		{
 			System.out.println(ex.getMessage());
 			testResult = false;
 		}
