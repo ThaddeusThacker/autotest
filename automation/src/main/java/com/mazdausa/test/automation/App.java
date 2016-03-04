@@ -1,5 +1,4 @@
 package com.mazdausa.test.automation;
-
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -32,7 +31,6 @@ public class App {
 
 		// Open the configuration file which will point to all vehicle config
 		// files.
-		// test
 		TestUtil util = new TestUtil();
 
 		util.getConfigProperties("cars.properties");
