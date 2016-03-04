@@ -31,9 +31,6 @@ public class App {
 
 		// Open the configuration file which will point to all vehicle config
 		// files.
-		// test
-		// test2
-		// test3
 		TestUtil util = new TestUtil();
 
 		util.getConfigProperties("cars.properties");
