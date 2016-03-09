@@ -9,6 +9,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import com.mazdausa.test.automation.cases.ClickVerificationTest;
+import com.mazdausa.test.automation.cases.ElementScrollTest;
 import com.mazdausa.test.automation.cases.SearchContext;
 import com.mazdausa.test.automation.cases.SwitchContextTest;
 import com.mazdausa.test.automation.components.Disclaimer;
@@ -50,7 +51,7 @@ public class App {
 		if (props != null) {
 			// all is good, lets read some properties
 			environment = props.getProperty("musa_environment");
-			homePageUrlProd = props.getProperty("musa_homepage_url_prod");
+			homePageUrlProd = props.getProperty("m3h_vlp_url_prod");
 			homePageUrlNonProd = props.getProperty("musa_homepage_url_" + environment);
 			vlpProdPageUrl = props.getProperty("m3h_vlp_url_prod");
 			vlpNonProdPageUrl = props.getProperty("m3h_vlp_url_" + environment);
@@ -79,17 +80,19 @@ public class App {
 		prodDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		
-		prodDriver.get(props.getProperty("musa_homepage_frameId"));
+		//prodDriver.get(props.getProperty("musa_homepage_frameId"));
 		
 		SwitchContextTest switchContext = new SwitchContextTest(prodDriver);
 		
-		switchContext.changeContext(SearchContext.ID, props.getProperty("musa_homepage_en_buttonId"));
+	//	switchContext.changeContext(SearchContext.ID, props.getProperty("musa_homepage_en_button"));
 		
 		
 		
 		ClickVerificationTest clickVerify = new ClickVerificationTest(prodDriver);
-		clickVerify.test(SearchContext.XPATH, "");
-		
+		clickVerify.test(SearchContext.XPATH, "//*[@id=\"overview\"]/div[1]/div/p[1]/span");
+		ElementScrollTest box = new ElementScrollTest(prodDriver);
+		String result = box.test(SearchContext.XPATH, "/html/body/footer/div/div[2]/div/div/div");
+		System.out.println("resultado " + result);
 		// test2
 		// test3
 		

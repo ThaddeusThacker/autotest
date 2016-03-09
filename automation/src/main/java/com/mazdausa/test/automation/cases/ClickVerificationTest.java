@@ -31,6 +31,19 @@ public class ClickVerificationTest extends BaseTest {
 	
 	public Boolean test(int searchContext, String contextValue){
 		SearchContext context = new SearchContext(searchContext, contextValue);
+		try
+		{
+			element = getWebElement(context);			
+			element.click();
+			
+			
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex.getMessage());
+			testResult = false;
+		}
+		
 		return test(context);
 	}
 
