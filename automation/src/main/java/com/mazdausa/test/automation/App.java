@@ -1,5 +1,4 @@
 package com.mazdausa.test.automation;
-
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -10,6 +9,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import com.mazdausa.test.automation.cases.ClickVerificationTest;
+import com.mazdausa.test.automation.cases.ElementScrollTest;
 import com.mazdausa.test.automation.cases.SearchContext;
 import com.mazdausa.test.automation.cases.SwitchContextTest;
 import com.mazdausa.test.automation.components.Disclaimer;
@@ -32,7 +32,6 @@ public class App {
 
 		// Open the configuration file which will point to all vehicle config
 		// files.
-		// test
 		TestUtil util = new TestUtil();
 
 		util.getConfigProperties("cars.properties");
@@ -52,7 +51,7 @@ public class App {
 		if (props != null) {
 			// all is good, lets read some properties
 			environment = props.getProperty("musa_environment");
-			homePageUrlProd = props.getProperty("musa_homepage_url_prod");
+			homePageUrlProd = props.getProperty("m3h_vlp_url_prod");
 			homePageUrlNonProd = props.getProperty("musa_homepage_url_" + environment);
 			vlpProdPageUrl = props.getProperty("m3h_vlp_url_prod");
 			vlpNonProdPageUrl = props.getProperty("m3h_vlp_url_" + environment);
@@ -81,17 +80,23 @@ public class App {
 		prodDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		
-		prodDriver.get(props.getProperty("musa_homepage_frameId"));
+		//prodDriver.get(props.getProperty("musa_homepage_frameId"));
 		
 		SwitchContextTest switchContext = new SwitchContextTest(prodDriver);
 		
-		switchContext.changeContext(SearchContext.ID, props.getProperty("musa_homepage_en_buttonId"));
+	//	switchContext.changeContext(SearchContext.ID, props.getProperty("musa_homepage_en_button"));
 		
 		
-		
+		/* Open the Overview Hero price Disclaimer. */
 		ClickVerificationTest clickVerify = new ClickVerificationTest(prodDriver);
-		clickVerify.test(SearchContext.XPATH, "");
+		//clickVerify.test(SearchContext.XPATH, "//*[@id=\"overview\"]/div[1]/div/p[1]/span");
+		clickVerify.test(SearchContext.XPATH, props.getProperty("m3h_hero_price_disclaimer"));
 		
+		ElementScrollTest box = new ElementScrollTest(prodDriver);
+		String result = box.test(SearchContext.XPATH, props.getProperty("m3h_hero_price_disclaimer_popup"));
+		
+		
+		System.out.println("resultado " + result);
 		// test2
 		// test3
 		
