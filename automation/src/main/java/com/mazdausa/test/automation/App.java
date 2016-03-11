@@ -95,7 +95,7 @@ public class App {
 		System.out.println("Popup open: " + ((resultPopup) ? "PASS" : "FAIL"));
 		
 		
-		//gaby
+		//gaby 
 		//ClickVerificationTest clickVerify = new ClickVerificationTest(prodDriver);
 		//clickVerify.test(SearchContext.XPATH, "//*[@id=\"overview\"]/div[1]/div/p[1]/span");
 
