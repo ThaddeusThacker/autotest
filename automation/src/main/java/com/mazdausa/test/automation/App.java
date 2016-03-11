@@ -88,11 +88,16 @@ public class App {
 	//	switchContext.changeContext(SearchContext.ID, props.getProperty("musa_homepage_en_button"));
 		
 		
-		
+		/* Open the Overview Hero price Disclaimer. */
 		ClickVerificationTest clickVerify = new ClickVerificationTest(prodDriver);
-		clickVerify.test(SearchContext.XPATH, "//*[@id=\"overview\"]/div[1]/div/p[1]/span");
+
+		//clickVerify.test(SearchContext.XPATH, "//*[@id=\"overview\"]/div[1]/div/p[1]/span");
+		clickVerify.test(SearchContext.XPATH, props.getProperty("m3h_hero_price_disclaimer"));
+		
 		ElementScrollTest box = new ElementScrollTest(prodDriver);
-		String result = box.test(SearchContext.XPATH, "/html/body/footer/div/div[2]/div/div/div");
+		String result = box.test(SearchContext.XPATH, props.getProperty("m3h_hero_price_disclaimer_popup"));
+		
+
 		System.out.println("resultado " + result);
 		// test2
 		// test3
