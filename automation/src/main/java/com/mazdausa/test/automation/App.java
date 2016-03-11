@@ -9,6 +9,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import com.mazdausa.test.automation.cases.ClickVerificationTest;
+import com.mazdausa.test.automation.cases.CopyVerificationTest;
 import com.mazdausa.test.automation.cases.ElementScrollTest;
 import com.mazdausa.test.automation.cases.SearchContext;
 import com.mazdausa.test.automation.cases.SwitchContextTest;
@@ -161,6 +162,12 @@ public class App {
 
 		}
 */
+		CopyVerificationTest copyVerify = new CopyVerificationTest(prodDriver);
+		
+		Boolean copyResult = copyVerify.execute();
+		System.out.println("Copy Result: " + ((copyResult)? "Pass" : "Fail"));
+		
+		
 		System.out.println("----------------------------------------------------------------------");
 
 		/*
