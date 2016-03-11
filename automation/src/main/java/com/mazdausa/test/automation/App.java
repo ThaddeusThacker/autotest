@@ -89,19 +89,14 @@ public class App {
 		
 		/* Open the Overview Hero price Disclaimer. */
 		ClickVerificationTest clickVerify = new ClickVerificationTest(prodDriver);
-<<<<<<< HEAD
+
 		//clickVerify.test(SearchContext.XPATH, "//*[@id=\"overview\"]/div[1]/div/p[1]/span");
 		clickVerify.test(SearchContext.XPATH, props.getProperty("m3h_hero_price_disclaimer"));
 		
 		ElementScrollTest box = new ElementScrollTest(prodDriver);
 		String result = box.test(SearchContext.XPATH, props.getProperty("m3h_hero_price_disclaimer_popup"));
 		
-		
-=======
-		clickVerify.test(SearchContext.XPATH, "//*[@id=\"overview\"]/div[1]/div/p[1]/span");
-		ElementScrollTest box = new ElementScrollTest(prodDriver);
-		String result = box.test(SearchContext.XPATH, "/html/body/footer/div/div[2]/div/div/div");
->>>>>>> branch 'M3H' of https://github.com/ThaddeusThacker/autotest
+
 		System.out.println("resultado " + result);
 		// test2
 		// test3
