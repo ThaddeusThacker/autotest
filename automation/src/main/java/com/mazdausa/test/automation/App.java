@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.mazdausa.test.automation.cases.ClickVerificationTest;
 import com.mazdausa.test.automation.cases.ElementScrollTest;
+import com.mazdausa.test.automation.cases.OpenPopupTest;
 import com.mazdausa.test.automation.cases.SearchContext;
 import com.mazdausa.test.automation.cases.SwitchContextTest;
 import com.mazdausa.test.automation.components.Disclaimer;
@@ -77,7 +78,7 @@ public class App {
 		/* Set up Implicit Wait time before throwing an exception.
 		 * See:  http://toolsqa.com/selenium-webdriver/wait-commands/
 		 */
-		prodDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		prodDriver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		
 		
 		//prodDriver.get(props.getProperty("musa_homepage_frameId"));
@@ -87,12 +88,24 @@ public class App {
 	//	switchContext.changeContext(SearchContext.ID, props.getProperty("musa_homepage_en_button"));
 		
 		
+		//ali
+		OpenPopupTest popupTest = new OpenPopupTest(prodDriver);
+		Boolean resultPopup = popupTest.test(SearchContext.XPATH, "//*[@id=\"overview\"]/div[1]/div/p[1]/span", SearchContext.XPATH, "/html/body/footer/div/div[2]/div/div");
+		System.out.println("Popup open: " + ((resultPopup) ? "PASS" : "FAIL"));
 		
-		ClickVerificationTest clickVerify = new ClickVerificationTest(prodDriver);
-		clickVerify.test(SearchContext.XPATH, "//*[@id=\"overview\"]/div[1]/div/p[1]/span");
+		
+		//gaby
+		//ClickVerificationTest clickVerify = new ClickVerificationTest(prodDriver);
+		//clickVerify.test(SearchContext.XPATH, "//*[@id=\"overview\"]/div[1]/div/p[1]/span");
 		ElementScrollTest box = new ElementScrollTest(prodDriver);
 		String result = box.test(SearchContext.XPATH, "/html/body/footer/div/div[2]/div/div/div");
 		System.out.println("resultado " + result);
+		
+		
+		
+		
+		
+		
 		// test2
 		// test3
 		
