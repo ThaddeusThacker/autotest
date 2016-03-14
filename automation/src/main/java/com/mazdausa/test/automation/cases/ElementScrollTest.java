@@ -12,15 +12,15 @@ public class ElementScrollTest extends BaseTest {
 		this.setDriver(webDriver);
 	}
 
-	public String test(int searchContext, String contextValue){
-		String result = "FAIL";
+	public Boolean test(int searchContext, String contextValue){
+		Boolean result = false;
 		try
 		{
 			SearchContext context = new SearchContext(searchContext, contextValue);
 			element = getWebElement(context);			
 			
 			if(element.getCssValue("overflow-y").equals("auto") || element.getCssValue("overflow-y").equals("scroll")){
-				result = "PASS";
+				result = true;
 			}
 			
 		}
