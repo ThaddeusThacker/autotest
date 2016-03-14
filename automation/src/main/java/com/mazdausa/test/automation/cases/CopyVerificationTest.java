@@ -23,23 +23,22 @@ public class CopyVerificationTest extends BaseTest {
 		{
 			try
 			{
-				// get text on PROD
-				driver.get("http://mazdausa.com/MusaWeb/displayPage.action?pageParameter=modelsMain&vehicleCode=M3H#overview");
-				
-				
-				WebElement link = driver.findElement(By.xpath("//*[@id='overview']/div[1]/div/p[1]/span"));
-				link.click();
-				WebElement element =  driver.findElement(By.xpath("html/body/footer/div/div[2]/div/div/div"));
-				String aCopy = element.getText();
+				// get text on QA
 				
 				driver.get("http://musa.qaserver.devteamcr.com/MusaWeb/displayPage.action?pageParameter=modelsMain&vehicleCode=M3H#overview");
-			    
 			    WebElement link2 = driver.findElement(By.xpath("//*[@id='overview']/div[1]/div/p[1]/span"));
 				link2.click();
 				WebElement aelement =  driver.findElement(By.xpath("html/body/footer/div/div[2]/div/div/div"));
 				String bCopy = aelement.getText();
 				
-				// Compare
+				// get text on PROD
+				driver.get("http://mazdausa.com/MusaWeb/displayPage.action?pageParameter=modelsMain&vehicleCode=M3H#overview");
+				WebElement link = driver.findElement(By.xpath("//*[@id='overview']/div[1]/div/p[1]/span"));
+				link.click();
+				WebElement element =  driver.findElement(By.xpath("html/body/footer/div/div[2]/div/div/div"));
+				String aCopy = element.getText();
+				
+				// Compare both text
 			    testResult = bCopy.equals(aCopy); //compare method 
 			    
 			    
