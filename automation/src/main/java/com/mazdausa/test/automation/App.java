@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.mazdausa.test.automation.cases.ClickVerificationTest;
 import com.mazdausa.test.automation.cases.CopyVerificationTest;
 import com.mazdausa.test.automation.cases.ElementScrollTest;
+import com.mazdausa.test.automation.cases.MouseHoverTest;
 import com.mazdausa.test.automation.cases.OpenPopupTest;
 import com.mazdausa.test.automation.cases.SearchContext;
 import com.mazdausa.test.automation.cases.SwitchContextTest;
@@ -151,7 +152,12 @@ public class App {
 
 		// Test Disclaimer
 
-		// Test 360 Rotation		
+		// Test 360 Rotation	
+		
+		// Mouse hover test
+		MouseHoverTest mouseHover = new MouseHoverTest(prodDriver);
+		Boolean mouseHoverPresent = mouseHover.execute();
+		System.out.println("Mouse Hover action: " + ((mouseHoverPresent) ? "PASS" : "FAIL"));
 		
 		
 		
@@ -184,6 +190,9 @@ public class App {
 
 		}
 */
+		
+	    
+		
 		CopyVerificationTest copyVerify = new CopyVerificationTest(prodDriver);
 		
 		Boolean copyResult = copyVerify.execute();
