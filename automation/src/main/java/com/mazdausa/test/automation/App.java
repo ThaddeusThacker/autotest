@@ -94,25 +94,39 @@ public class App {
 
 		//ali
 		OpenPopupTest popupTest = new OpenPopupTest(prodDriver);
-		Boolean resultPopup = popupTest.test(SearchContext.XPATH, "//*[@id=\"overview\"]/div[1]/div/p[1]/span", SearchContext.XPATH, "/html/body/footer/div/div[2]/div/div");
+		
+		Boolean resultPopup = popupTest.test(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_link"), SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_popup"));
+		
 		System.out.println("Popup open: " + ((resultPopup) ? "PASS" : "FAIL"));
-		
 	
-		
-
 		ElementScrollTest box = new ElementScrollTest(prodDriver);
 		Boolean resultScroll = box.test(SearchContext.XPATH, props.getProperty("m3h_hero_price_disclaimer_popup"));
 		System.out.println("Scrollbar: " + ((resultScroll) ? "PASS" : "FAIL"));
 		
 		
-		
-		
-		
-		
-		// test2
-		// test3
-		
 		switchContext.backToDefault();
+		
+		
+		// Mouse hover test
+		MouseHoverTest mouseHover = new MouseHoverTest(prodDriver);
+		Boolean mouseHoverPresent = mouseHover.execute();
+		System.out.println("Mouse Hover action: " + ((mouseHoverPresent) ? "PASS" : "FAIL"));
+		
+
+		
+		CopyVerificationTest copyVerify = new CopyVerificationTest(prodDriver);
+		Boolean copyResult = copyVerify.execute(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_copy"), SearchContext.XPATH,  props.getProperty("m3h_overview_price_disclaimer_textbox"));
+		System.out.println("Copy Result: " + ((copyResult)? "PASS" : "FAIL"));
+		// Dellys part
+		
+		ClosePopupTest closeTest = new ClosePopupTest(prodDriver);		
+	    Boolean closeresult = closeTest.test(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_close_link"), SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_popup"));
+	    System.out.println("Close Popup: " + ((closeresult) ? "PASS" : "FAIL"));
+	    //Pablo
+		
+		System.out.println("----------------------------------------------------------------------");
+
+
 		
 		
 
@@ -145,67 +159,6 @@ public class App {
 		// Test Disclaimer
 
 		// Test 360 Rotation	
-		
-		// Mouse hover test
-		MouseHoverTest mouseHover = new MouseHoverTest(prodDriver);
-		Boolean mouseHoverPresent = mouseHover.execute();
-		System.out.println("Mouse Hover action: " + ((mouseHoverPresent) ? "PASS" : "FAIL"));
-		
-		
-		
-		
-/*		
-		WebDriver prodDriver = new HtmlUnitDriver();
-		prodDriver.get(vlpProdPageUrl);
-
-		WebDriver approvalDriver = new HtmlUnitDriver();
-		approvalDriver.get(vlpNonProdPageUrl);
-
-		System.out.println("Prod Current URL = " + prodDriver.getCurrentUrl());
-		System.out.println("Prod Title = " + prodDriver.getTitle());
-		System.out.println("Non Prod Current URL = " + approvalDriver.getCurrentUrl());
-		System.out.println("Non Prod Title = " + approvalDriver.getTitle());
-
-		// Test getting a list of specific tag types
-		List<org.openqa.selenium.WebElement> options = prodDriver.findElements(By.tagName("div"));
-
-		if (options != null && options.size() > 0) {
-			WebElement element = null;
-			String elementName = null;
-			for (int i = 0; i < options.size(); i++) {
-				element = options.get(i);
-				elementName = element.toString();
-
-				System.out.println("Element ToString = " + elementName);
-
-			}
-
-		}
-*/
-		
-		CopyVerificationTest copyVerify = new CopyVerificationTest(prodDriver);
-		Boolean copyResult = copyVerify.execute(SearchContext.XPATH, "//*[@id=\"overview\"]/div[1]/div/p[1]/span", SearchContext.XPATH, "/html/body/footer/div/div[2]/div/div/div");
-		System.out.println("Copy Result: " + ((copyResult)? "PASS" : "FAIL"));
-		// Dellys part
-		
-		ClosePopupTest closeTest = new ClosePopupTest(prodDriver);
-	    Boolean closeresult = closeTest.test(SearchContext.XPATH, "/html/body/footer/div/div[2]/div/div/span[1]", SearchContext.XPATH, "/html/body/footer/div/div[2]/div/div");
-	    System.out.println("Close Popup: " + ((closeresult) ? "PASS" : "FAIL"));
-	    //Pablo
-		
-		System.out.println("----------------------------------------------------------------------");
-
-		/*
-		 * String xpathExpression = props.getProperty("m3h_vlp_overview_nav");
-		 * 
-		 * // Let's get the nav buttons WebElement overviewNavLink =
-		 * prodDriver.findElement(By.xpath(xpathExpression)); if(overviewNavLink
-		 * != null) { System.out.println("Overview Nav = " +
-		 * overviewNavLink.toString());
-		 * 
-		 * }
-		 */
-
 
 	}
 }
