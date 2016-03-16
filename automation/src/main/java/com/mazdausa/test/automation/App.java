@@ -9,6 +9,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import com.mazdausa.test.automation.cases.ClickVerificationTest;
+import com.mazdausa.test.automation.cases.ClosePopupTest;
 import com.mazdausa.test.automation.cases.CopyVerificationTest;
 import com.mazdausa.test.automation.cases.ElementScrollTest;
 import com.mazdausa.test.automation.cases.MouseHoverTest;
@@ -187,6 +188,10 @@ public class App {
 		System.out.println("Copy Result: " + ((copyResult)? "PASS" : "FAIL"));
 		// Dellys part
 		
+		ClosePopupTest closeTest = new ClosePopupTest(prodDriver);
+	    Boolean closeresult = closeTest.test(SearchContext.XPATH, "/html/body/footer/div/div[2]/div/div/span[1]", SearchContext.XPATH, "/html/body/footer/div/div[2]/div/div");
+	    System.out.println("Close Popup: " + ((closeresult) ? "PASS" : "FAIL"));
+	    //Pablo
 		
 		System.out.println("----------------------------------------------------------------------");
 
