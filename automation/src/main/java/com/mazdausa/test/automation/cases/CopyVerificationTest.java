@@ -17,7 +17,7 @@ public class CopyVerificationTest extends BaseTest {
 
 		}
 	
-	public Boolean execute(){
+	public Boolean execute(int linkContext, String linkValue, int copyContext, String copyValue){
 		Boolean testResult =false;
 		try
 		{
@@ -26,17 +26,24 @@ public class CopyVerificationTest extends BaseTest {
 				// get text on QA
 				
 				driver.get("http://musa.qaserver.devteamcr.com/MusaWeb/displayPage.action?pageParameter=modelsMain&vehicleCode=M3H#overview");
-			    WebElement link2 = driver.findElement(By.xpath("//*[@id='overview']/div[1]/div/p[1]/span"));
-				link2.click();
-				WebElement aelement =  driver.findElement(By.xpath("html/body/footer/div/div[2]/div/div/div"));
-				String bCopy = aelement.getText();
+
+				SearchContext contextLink = new SearchContext(linkContext, linkValue);
+				WebElement link = getWebElement(contextLink);	
+				link.click();
+				Thread.sleep(500);
+				SearchContext contextPopup = new SearchContext(copyContext, copyValue);
+				WebElement copyelement =  getWebElement(contextPopup);	
+				String bCopy = copyelement.getText();
 				
 				// get text on PROD
 				driver.get("http://mazdausa.com/MusaWeb/displayPage.action?pageParameter=modelsMain&vehicleCode=M3H#overview");
-				WebElement link = driver.findElement(By.xpath("//*[@id='overview']/div[1]/div/p[1]/span"));
+			    contextLink = new SearchContext(linkContext, linkValue);
+			    link = getWebElement(contextLink);	
 				link.click();
-				WebElement element =  driver.findElement(By.xpath("html/body/footer/div/div[2]/div/div/div"));
-				String aCopy = element.getText();
+				Thread.sleep(500);
+				contextPopup = new SearchContext(copyContext, copyValue);
+				copyelement =  getWebElement(contextPopup);	
+				String aCopy = copyelement.getText();
 				
 				// Compare both text
 			    testResult = bCopy.equals(aCopy); //compare method 
@@ -60,5 +67,3 @@ public class CopyVerificationTest extends BaseTest {
 	
 
 }
-
-

@@ -182,12 +182,9 @@ public class App {
 		}
 */
 		
-	    
-		
 		CopyVerificationTest copyVerify = new CopyVerificationTest(prodDriver);
-		
-		Boolean copyResult = copyVerify.execute();
-		System.out.println("Copy Result: " + ((copyResult)? "Pass" : "Fail"));
+		Boolean copyResult = copyVerify.execute(SearchContext.XPATH, "//*[@id=\"overview\"]/div[1]/div/p[1]/span", SearchContext.XPATH, "/html/body/footer/div/div[2]/div/div/div");
+		System.out.println("Copy Result: " + ((copyResult)? "PASS" : "FAIL"));
 		// Dellys part
 		
 		
