@@ -109,7 +109,7 @@ public class App {
 		
 		// Mouse hover test
 		MouseHoverTest mouseHover = new MouseHoverTest(prodDriver);
-		Boolean mouseHoverPresent = mouseHover.execute();
+		Boolean mouseHoverPresent = mouseHover.MousHoverTest(SearchContext.XPATH,props.getProperty("m3h_hero_price_disclaimer"));
 		System.out.println("Mouse Hover action: " + ((mouseHoverPresent) ? "PASS" : "FAIL"));
 		
 
