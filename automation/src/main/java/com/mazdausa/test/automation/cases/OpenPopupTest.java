@@ -1,6 +1,5 @@
 package com.mazdausa.test.automation.cases;
 
-import org.apache.bcel.generic.Select;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 

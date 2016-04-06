@@ -1,15 +1,13 @@
 package com.mazdausa.test.automation;
 
-import java.util.Properties;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-
 import com.mazdausa.test.automation.cases.ClickVerificationTest;
 import com.mazdausa.test.automation.cases.SearchContext;
 import com.mazdausa.test.automation.cases.SwitchContextTest;
 import com.mazdausa.test.util.TestUtil;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import java.util.Properties;
 
 public class Sandbox {
 
