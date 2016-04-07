@@ -87,7 +87,6 @@ public class App {
             switchContext.backToDefault();
         }
 		
-		
 
 		//Open Popup disclaimer test
 		OpenPopupTest popupTest = new OpenPopupTest(prodDriver);
@@ -98,16 +97,11 @@ public class App {
 		ElementScrollTest box = new ElementScrollTest(prodDriver);
 		Boolean resultScroll = box.test(SearchContext.XPATH, props.getProperty("m3h_hero_price_disclaimer_popup"));
 		System.out.println("Scrollbar: " + ((resultScroll) ? "PASS" : "FAIL"));
-		
-		
-		switchContext.backToDefault();
-		
-		
+
 		// Mouse hover test
 		MouseHoverTest mouseHover = new MouseHoverTest(prodDriver);
 		Boolean mouseHoverPresent = mouseHover.MousHoverTest(SearchContext.XPATH,props.getProperty("m3h_hero_price_disclaimer"));
 		System.out.println("Mouse Hover action: " + ((mouseHoverPresent) ? "PASS" : "FAIL"));
-		
 
 		//Disclaimer Copy test
 		CopyVerificationTest copyVerify = new CopyVerificationTest(prodDriver);
