@@ -1,12 +1,9 @@
 package com.mazdausa.test.automation;
-import com.mazdausa.test.automation.cases.*;
 import com.mazdausa.test.util.TestUtil;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.NoAlertPresentException;
+import com.mazdausa.test.automation.cases.*;
+import com.mazdausa.test.automation.cases.SearchContext;
 
 import java.util.List;
 import java.util.Properties;
@@ -67,16 +64,19 @@ public class App {
 		}
 
 		// Create a new instance of a driver
-		WebDriver prodDriver = new FirefoxDriver();
 		WebDriver appDriver = new FirefoxDriver();
-		prodDriver.get(vlpProdPageUrl);
+		WebDriver prodDriver = new FirefoxDriver();
+
 		appDriver.get(vlpPageUrlApproval);
+		prodDriver.get(vlpProdPageUrl);
+
 		
 		/* Set up Implicit Wait time before throwing an exception.
 		 * See:  http://toolsqa.com/selenium-webdriver/wait-commands/
 		 */
 		prodDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		prodDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		appDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		appDriver.manage().window().maximize();
 
 
 		//Authentication on approval
@@ -89,19 +89,23 @@ public class App {
 			pass.sendKeys(props.getProperty("pass"));
 			WebElement logonBtn = appDriver.findElement(By.xpath(props.getProperty("logon_button")));
 			logonBtn.click();
+
 			try {
 				Alert alert = appDriver.switchTo().alert();
 				alert.accept();
 				//if alert present, accept and move on.
+				appDriver.get(vlpPageUrlApproval);
 			}
 			catch (NoAlertPresentException e) {
 				//do what you normally would if you didn't have the alert.
 			}
 		}
-		
+
+
 		SwitchContextTest switchContext = new SwitchContextTest(prodDriver);
 
         //test language popup
+
 		if(switchContext.changeContext(SearchContext.ID, props.getProperty("musa_homepage_frameId"))){
             WebElement languageBtn = prodDriver.findElement(By.id(props.getProperty("musa_homepage_en_button")));
             languageBtn.click();
@@ -112,6 +116,8 @@ public class App {
             }
             switchContext.backToDefault();
         }
+
+
 
 
 		//Open Popup disclaimer test
@@ -139,16 +145,17 @@ public class App {
 	    Boolean closeresult = closeTest.test(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_close_link"), SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_popup"));
 	    System.out.println("Close Popup: " + ((closeresult) ? "PASS" : "FAIL"));
 
-        //Hover 360 button
-        PropertyOnHoverTest hover360Button = new PropertyOnHoverTest(appDriver);
-        Boolean resultHover360Button = hover360Button.test(SearchContext.XPATH, props.getProperty("m3h_360_button"), "background-image");
-        System.out.println("Hover 360 button: " + ((resultHover360Button) ? "PASS" : "FAIL"));
+		//Hover 360 button
+		PropertyOnHoverTest hover360Button = new PropertyOnHoverTest(appDriver);
+		Boolean resultHover360Button = hover360Button.test(SearchContext.XPATH, props.getProperty("m3h_360_button"), "background-image");
+		System.out.println("Hover 360 button: " + ((resultHover360Button) ? "PASS" : "FAIL"));
 
-        //Open 360 overlay
-        OpenPopupTest overlay360Open = new OpenPopupTest(appDriver);
-        Boolean resultOverlay360Open = overlay360Open.test(SearchContext.XPATH, props.getProperty("m3h_360_button"), SearchContext.XPATH, props.getProperty("m3h_360_overlay"));
-        System.out.println("Overlay 360 open: " + ((resultOverlay360Open) ? "PASS" : "FAIL"));
-		
+		//Open 360 overlay
+		OpenPopupTest overlay360Open = new OpenPopupTest(appDriver);
+		Boolean resultOverlay360Open = overlay360Open.test(SearchContext.XPATH, props.getProperty("m3h_360_button"), SearchContext.XPATH, props.getProperty("m3h_360_overlay"));
+		System.out.println("Overlay 360 open: " + ((resultOverlay360Open) ? "PASS" : "FAIL"));
+
+
 		System.out.println("----------------------------------------------------------------------");
 
 
