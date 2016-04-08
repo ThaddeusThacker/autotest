@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.NoAlertPresentException;
 
 import java.util.List;
 import java.util.Properties;
@@ -32,9 +34,11 @@ public class App {
 
 		String environment = null;
 		String homePageUrlProd = null;
+        String homePageUrlApproval = null;
 		String homePageUrlNonProd = null;
 		String vlpProdPageUrl = null;
 		String vlpNonProdPageUrl = null;
+		String vlpPageUrlApproval = null;
 
 		List vehicleCodes = null;
 
@@ -42,7 +46,9 @@ public class App {
 		if (props != null) {
 			// all is good, lets read some properties
 			environment = props.getProperty("musa_environment");
-			homePageUrlProd = props.getProperty("m3h_vlp_url_prod");
+			homePageUrlApproval = props.getProperty("musa_homepage_url_approval");
+			vlpPageUrlApproval = props.getProperty("m3h_vlp_url_approval");
+            homePageUrlProd = props.getProperty("m3h_vlp_url_prod");
 			homePageUrlNonProd = props.getProperty("musa_homepage_url_" + environment);
 			vlpProdPageUrl = props.getProperty("m3h_vlp_url_prod");
 			vlpNonProdPageUrl = props.getProperty("m3h_vlp_url_" + environment);
@@ -62,16 +68,36 @@ public class App {
 
 		// Create a new instance of a driver
 		WebDriver prodDriver = new FirefoxDriver();
-		
-		prodDriver.get(homePageUrlProd);
+		WebDriver appDriver = new FirefoxDriver();
+		prodDriver.get(vlpProdPageUrl);
+		appDriver.get(vlpPageUrlApproval);
 		
 		/* Set up Implicit Wait time before throwing an exception.
 		 * See:  http://toolsqa.com/selenium-webdriver/wait-commands/
 		 */
 		prodDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		
-		
-		//prodDriver.get(props.getProperty("musa_homepage_frameId"));
+		prodDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+
+		//Authentication on approval
+		if (appDriver.getCurrentUrl().contains("portaltest")){
+
+			System.out.println("Redirect to validation approval " + appDriver.getCurrentUrl());
+			WebElement user = appDriver.findElement(By.xpath(props.getProperty("user_field")));
+			user.sendKeys(props.getProperty("user"));
+			WebElement pass = appDriver.findElement(By.xpath(props.getProperty("pass_field")));
+			pass.sendKeys(props.getProperty("pass"));
+			WebElement logonBtn = appDriver.findElement(By.xpath(props.getProperty("logon_button")));
+			logonBtn.click();
+			try {
+				Alert alert = appDriver.switchTo().alert();
+				alert.accept();
+				//if alert present, accept and move on.
+			}
+			catch (NoAlertPresentException e) {
+				//do what you normally would if you didn't have the alert.
+			}
+		}
 		
 		SwitchContextTest switchContext = new SwitchContextTest(prodDriver);
 
@@ -86,20 +112,20 @@ public class App {
             }
             switchContext.backToDefault();
         }
-		
+
 
 		//Open Popup disclaimer test
-		OpenPopupTest popupTest = new OpenPopupTest(prodDriver);
+		OpenPopupTest popupTest = new OpenPopupTest(appDriver);
 		Boolean resultPopup = popupTest.test(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_link"), SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_popup"));
 		System.out.println("Popup open: " + ((resultPopup) ? "PASS" : "FAIL"));
 
 		//Scroll Test
-		ElementScrollTest box = new ElementScrollTest(prodDriver);
+		ElementScrollTest box = new ElementScrollTest(appDriver);
 		Boolean resultScroll = box.test(SearchContext.XPATH, props.getProperty("m3h_hero_price_disclaimer_popup"));
 		System.out.println("Scrollbar: " + ((resultScroll) ? "PASS" : "FAIL"));
 
 		// Mouse hover test
-		MouseHoverTest mouseHover = new MouseHoverTest(prodDriver);
+		MouseHoverTest mouseHover = new MouseHoverTest(appDriver);
 		Boolean mouseHoverPresent = mouseHover.MousHoverTest(SearchContext.XPATH,props.getProperty("m3h_hero_price_disclaimer"));
 		System.out.println("Mouse Hover action: " + ((mouseHoverPresent) ? "PASS" : "FAIL"));
 
@@ -109,17 +135,17 @@ public class App {
 		System.out.println("Copy Result: " + ((copyResult)? "PASS" : "FAIL"));
 
 		//Close Pop up disclaimer test
-		ClosePopupTest closeTest = new ClosePopupTest(prodDriver);		
+		ClosePopupTest closeTest = new ClosePopupTest(prodDriver);
 	    Boolean closeresult = closeTest.test(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_close_link"), SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_popup"));
 	    System.out.println("Close Popup: " + ((closeresult) ? "PASS" : "FAIL"));
 
         //Hover 360 button
-        PropertyOnHoverTest hover360Button = new PropertyOnHoverTest(prodDriver);
+        PropertyOnHoverTest hover360Button = new PropertyOnHoverTest(appDriver);
         Boolean resultHover360Button = hover360Button.test(SearchContext.XPATH, props.getProperty("m3h_360_button"), "background-image");
         System.out.println("Hover 360 button: " + ((resultHover360Button) ? "PASS" : "FAIL"));
 
         //Open 360 overlay
-        OpenPopupTest overlay360Open = new OpenPopupTest(prodDriver);
+        OpenPopupTest overlay360Open = new OpenPopupTest(appDriver);
         Boolean resultOverlay360Open = overlay360Open.test(SearchContext.XPATH, props.getProperty("m3h_360_button"), SearchContext.XPATH, props.getProperty("m3h_360_overlay"));
         System.out.println("Overlay 360 open: " + ((resultOverlay360Open) ? "PASS" : "FAIL"));
 		
