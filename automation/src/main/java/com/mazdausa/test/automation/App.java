@@ -76,8 +76,8 @@ public class App {
 		 */
 		prodDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		appDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		//appDriver.manage().window().maximize();
-		//prodDriver.manage().window().maximize();
+	//	appDriver.manage().window().maximize();
+	//	prodDriver.manage().window().maximize();
 
 
 		//Authentication on approval
@@ -125,6 +125,8 @@ public class App {
 		OpenPopupTest popupTest = new OpenPopupTest(appDriver);
 		Boolean resultPopup = popupTest.test(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_link"), SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_popup"));
 		System.out.println("Popup open: " + ((resultPopup) ? "PASS" : "FAIL"));
+		OpenPopupTest popupTest2 = new OpenPopupTest(prodDriver);
+		popupTest2.test(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_link"), SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_popup"));//
 
 		//Scroll Test
 		ElementScrollTest box = new ElementScrollTest(appDriver);
@@ -137,14 +139,19 @@ public class App {
 		System.out.println("Mouse Hover action: " + ((mouseHoverPresent) ? "PASS" : "FAIL"));
 
 		//Disclaimer Copy test
-		CopyVerificationTest copyVerify = new CopyVerificationTest(appDriver,prodDriver);
-		Boolean copyResult = copyVerify.execute(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_copy"), SearchContext.XPATH,  props.getProperty("m3h_overview_price_disclaimer_textbox"));
+		CopyVerificationTest copyVerify = new CopyVerificationTest(appDriver, prodDriver);
+		Boolean copyResult = copyVerify.execute(SearchContext.XPATH,  props.getProperty("m3h_overview_price_disclaimer_textbox"));
 		System.out.println("Copy Result: " + ((copyResult)? "PASS" : "FAIL"));
 
 		//Close Pop up disclaimer test
 		ClosePopupTest closeTest = new ClosePopupTest(appDriver);
 	    Boolean closeresult = closeTest.test(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_close_link"), SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_popup"));
 	    System.out.println("Close Popup: " + ((closeresult) ? "PASS" : "FAIL"));
+
+        //360 button Copy test
+        CopyVerificationTest copyVerifyBtn = new CopyVerificationTest(appDriver, prodDriver);
+        Boolean copyResultBtn = copyVerifyBtn.execute(SearchContext.XPATH, props.getProperty("m3h_360_button"));
+        System.out.println("Copy 360 button Result: " + ((copyResult)? "PASS" : "FAIL"));
 
 		//Hover 360 button
 		PropertyOnHoverTest hover360Button = new PropertyOnHoverTest(appDriver);

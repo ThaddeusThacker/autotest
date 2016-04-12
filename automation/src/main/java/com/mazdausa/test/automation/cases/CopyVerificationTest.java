@@ -7,62 +7,55 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class CopyVerificationTest extends BaseTest {
 
-    private WebElement aElement;
-    private WebElement bElement;
+	private WebElement aElement;
+	private WebElement bElement;
+	private WebDriver appDriver;
+	private WebDriver prodDriver;
 
 
-    public CopyVerificationTest(WebDriver driver) {
+	public CopyVerificationTest(WebDriver appDriver, WebDriver prodDriver) {
+		this.appDriver = appDriver;
+		this.prodDriver = prodDriver;
 
-        this.setDriver(driver);
+	}
 
-    }
+	public Boolean execute(int copyContext, String copyValue){
+		Boolean testResult =false;
+		try
+		{
+			try
+			{
 
-    public Boolean execute(int linkContext, String linkValue, int copyContext, String copyValue){
-        Boolean testResult =false;
-        try
-        {
-            try
-            {
-                // get text on QA
+				// get text on APP
+				this.setDriver(appDriver);
+				SearchContext contextPopup = new SearchContext(copyContext, copyValue);
+				WebElement copyelement =  getWebElement(contextPopup);
+				String appCopy = copyelement.getText();
 
-                driver.get("http://musa.qaserver.devteamcr.com/MusaWeb/displayPage.action?pageParameter=modelsMain&vehicleCode=M3H#overview");
+				// get text on PROD
+				this.setDriver(prodDriver);
+				SearchContext contextPopup2 = new SearchContext(copyContext, copyValue);;
+				copyelement =  getWebElement(contextPopup2);
+				String prodCopy = copyelement.getText();
 
-                SearchContext contextLink = new SearchContext(linkContext, linkValue);
-                WebElement link = getWebElement(contextLink);
-                link.click();
-                Thread.sleep(500);
-                SearchContext contextPopup = new SearchContext(copyContext, copyValue);
-                WebElement copyelement =  getWebElement(contextPopup);
-                String bCopy = copyelement.getText();
-
-                // get text on PROD
-                driver.get("http://mazdausa.com/MusaWeb/displayPage.action?pageParameter=modelsMain&vehicleCode=M3H#overview");
-                contextLink = new SearchContext(linkContext, linkValue);
-                link = getWebElement(contextLink);
-                link.click();
-                Thread.sleep(500);
-                contextPopup = new SearchContext(copyContext, copyValue);
-                copyelement =  getWebElement(contextPopup);
-                String aCopy = copyelement.getText();
-
-                // Compare both text
-                testResult = bCopy.equals(aCopy); //compare method
+				// Compare both text
+				testResult = appCopy.equals(prodCopy); //compare method
 
 
-            }catch(Exception e){
+			}catch(Exception e){
 
-                System.out.println(e.getMessage());
+				System.out.println(e.getMessage());
 
-            }
+			}
 
-        }catch(Exception e){
+		}catch(Exception e){
 
-            System.out.println(e.getMessage());
+			System.out.println(e.getMessage());
 
-        }
-        return testResult;
+		}
+		return testResult;
 
-    }
+	}
 
 
 

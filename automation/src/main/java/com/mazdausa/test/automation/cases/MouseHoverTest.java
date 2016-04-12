@@ -17,8 +17,6 @@ public class MouseHoverTest  extends BaseTest{
 		public Boolean MousHoverTest (int searchContext, String contextValue){
 			Boolean testResult = false;
 			try{
-				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-				driver.manage().window().maximize();
 
 				SearchContext myContext = new SearchContext(searchContext, contextValue);
 				element = getWebElement(myContext);
