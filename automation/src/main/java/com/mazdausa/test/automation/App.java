@@ -150,7 +150,7 @@ public class App {
 	    Boolean closeresult = closeTest.test(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_close_link"), SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_popup"));
 	    System.out.println("Close Popup: " + ((closeresult) ? "PASS" : "FAIL"));
 
-		//360 button headline test 
+		//Overview headline / Sub headline copy test 
         CopyVerificationTest copyHeroVerify = new CopyVerificationTest(appDriver, prodDriver);
         Boolean copyHeadlineResult = copyHeroVerify.execute(SearchContext.XPATH, props.getProperty("m3h_header_copy"));
         System.out.println("Copy Headline Result: " + ((copyHeadlineResult)? "PASS" : "FAIL"));
