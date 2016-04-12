@@ -96,6 +96,8 @@ public class App {
 				alert.accept();
 				//if alert present, accept and move on.
 				appDriver.get(vlpPageUrlApproval);
+                Alert alert2 = appDriver.switchTo().alert();
+                alert2.accept();
 			}
 			catch (NoAlertPresentException e) {
 				//do what you normally would if you didn't have the alert.
@@ -147,6 +149,13 @@ public class App {
 		ClosePopupTest closeTest = new ClosePopupTest(appDriver);
 	    Boolean closeresult = closeTest.test(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_close_link"), SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_popup"));
 	    System.out.println("Close Popup: " + ((closeresult) ? "PASS" : "FAIL"));
+
+		//360 button headline test 
+        CopyVerificationTest copyHeroVerify = new CopyVerificationTest(appDriver, prodDriver);
+        Boolean copyHeadlineResult = copyHeroVerify.execute(SearchContext.XPATH, props.getProperty("m3h_header_copy"));
+        System.out.println("Copy Headline Result: " + ((copyHeadlineResult)? "PASS" : "FAIL"));
+        Boolean copySubHeadlineResult = copyHeroVerify.execute(SearchContext.XPATH, props.getProperty("m3h_sub_head_copy"));
+        System.out.println("Copy Headline Result: " + ((copySubHeadlineResult)? "PASS" : "FAIL"));
 
         //360 button Copy test
         CopyVerificationTest copyVerifyBtn = new CopyVerificationTest(appDriver, prodDriver);
