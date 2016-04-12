@@ -74,9 +74,10 @@ public class App {
 		/* Set up Implicit Wait time before throwing an exception.
 		 * See:  http://toolsqa.com/selenium-webdriver/wait-commands/
 		 */
-		prodDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		appDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		appDriver.manage().window().maximize();
+		prodDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		appDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		//appDriver.manage().window().maximize();
+		//prodDriver.manage().window().maximize();
 
 
 		//Authentication on approval
@@ -136,12 +137,12 @@ public class App {
 		System.out.println("Mouse Hover action: " + ((mouseHoverPresent) ? "PASS" : "FAIL"));
 
 		//Disclaimer Copy test
-		CopyVerificationTest copyVerify = new CopyVerificationTest(prodDriver);
+		CopyVerificationTest copyVerify = new CopyVerificationTest(appDriver,prodDriver);
 		Boolean copyResult = copyVerify.execute(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_copy"), SearchContext.XPATH,  props.getProperty("m3h_overview_price_disclaimer_textbox"));
 		System.out.println("Copy Result: " + ((copyResult)? "PASS" : "FAIL"));
 
 		//Close Pop up disclaimer test
-		ClosePopupTest closeTest = new ClosePopupTest(prodDriver);
+		ClosePopupTest closeTest = new ClosePopupTest(appDriver);
 	    Boolean closeresult = closeTest.test(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_close_link"), SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_popup"));
 	    System.out.println("Close Popup: " + ((closeresult) ? "PASS" : "FAIL"));
 
