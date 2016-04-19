@@ -100,16 +100,19 @@ public class App {
                 alert2.accept();
 			}
 			catch (NoAlertPresentException e) {
+				//System.out.println(e.toString());
+				//e.printStackTrace();
 				//do what you normally would if you didn't have the alert.
 			}
 		}
 
 
-		SwitchContextTest switchContext = new SwitchContextTest(prodDriver);
+		SwitchContextTest switchContextProd = new SwitchContextTest(prodDriver);
+		SwitchContextTest switchContextApp = new SwitchContextTest(appDriver);
 
         //test language popup
 
-		if(switchContext.changeContext(SearchContext.ID, props.getProperty("musa_homepage_frameId"))){
+		if(switchContextProd.changeContext(SearchContext.ID, props.getProperty("musa_homepage_frameId"))){
             WebElement languageBtn = prodDriver.findElement(By.id(props.getProperty("musa_homepage_en_button")));
             languageBtn.click();
             try {
@@ -117,10 +120,19 @@ public class App {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            switchContext.backToDefault();
+            switchContextProd.backToDefault();
         }
 
-
+		if(switchContextApp.changeContext(SearchContext.ID, props.getProperty("musa_homepage_frameId"))){
+			WebElement languageBtn = appDriver.findElement(By.id(props.getProperty("musa_homepage_en_button")));
+			languageBtn.click();
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			switchContextApp.backToDefault();
+		}
 
 
 		//Open Popup disclaimer test
@@ -165,12 +177,12 @@ public class App {
 		//Hover 360 button
 		PropertyOnHoverTest hover360Button = new PropertyOnHoverTest(appDriver);
 		Boolean resultHover360Button = hover360Button.test(SearchContext.XPATH, props.getProperty("m3h_360_button"), "background-image");
-		System.out.println("Hover 360 button: " + ((resultHover360Button) ? "PASS" : "FAIL"));
+		System.out.println("M3H Hover 360 button: " + ((resultHover360Button) ? "PASS" : "FAIL"));
 
 		//Open 360 overlay
 		OpenPopupTest overlay360Open = new OpenPopupTest(appDriver);
 		Boolean resultOverlay360Open = overlay360Open.test(SearchContext.XPATH, props.getProperty("m3h_360_button"), SearchContext.XPATH, props.getProperty("m3h_360_overlay"));
-		System.out.println("Overlay 360 open: " + ((resultOverlay360Open) ? "PASS" : "FAIL"));
+		System.out.println("M3H Overlay 360 open: " + ((resultOverlay360Open) ? "PASS" : "FAIL"));
 
 
 		System.out.println("----------------------------------------------------------------------");
