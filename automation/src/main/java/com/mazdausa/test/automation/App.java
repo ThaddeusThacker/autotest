@@ -169,6 +169,16 @@ public class App {
         Boolean copySubHeadlineResult = copyHeroVerify.execute(SearchContext.XPATH, props.getProperty("m3h_sub_head_copy"));
         System.out.println("Copy Headline Result: " + ((copySubHeadlineResult)? "PASS" : "FAIL"));
 
+        // Subheadline font test
+        FontSubHeadlineTest fontsubheadlinetest = new FontSubHeadlineTest(appDriver);
+        Boolean fontsubheadlinepresent = fontsubheadlinetest.FontSubHeadlineTest(SearchContext.XPATH,props.getProperty("m3h_sub_head_copy"));
+        System.out.println("Subheadline font test M3H overview: " + ((fontsubheadlinepresent) ? "PASS" : "FAIL"));
+
+        //Font Headline Test
+        FontHeadlineTest fontheadlinetest = new FontHeadlineTest(appDriver);
+        Boolean fontheadlinepresent = fontheadlinetest.FontHeadlineTest(SearchContext.XPATH,props.getProperty("m3h_header_copy"));
+        System.out.println("Headline font test M3H overview: " + ((fontheadlinepresent) ? "PASS" : "FAIL"));
+
         //360 button Copy test
         CopyVerificationTest copyVerifyBtn = new CopyVerificationTest(appDriver, prodDriver);
         Boolean copyResultBtn = copyVerifyBtn.execute(SearchContext.XPATH, props.getProperty("m3h_360_button"));
