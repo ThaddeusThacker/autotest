@@ -134,7 +134,11 @@ public class App {
 			switchContextApp.backToDefault();
 		}
 
-
+		//InteriorColorTest
+		InteriorColorTest intColorTest = new InteriorColorTest(appDriver);
+		Boolean intColorTestResult = intColorTest.test("m3h", props, "http://images-approval.mazdausa.com/");
+		System.out.println("Interior Color test: " + ((intColorTestResult) ? "PASS" : "FAIL"));
+		
 		//Open Popup disclaimer test
 		OpenPopupTest popupTest = new OpenPopupTest(appDriver);
 		Boolean resultPopup = popupTest.test(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_link"), SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_popup"));
@@ -194,11 +198,12 @@ public class App {
 		Boolean resultOverlay360Open = overlay360Open.test(SearchContext.XPATH, props.getProperty("m3h_360_button"), SearchContext.XPATH, props.getProperty("m3h_360_overlay"));
 		System.out.println("M3H Overlay 360 open: " + ((resultOverlay360Open) ? "PASS" : "FAIL"));
 
+		
 
 		System.out.println("----------------------------------------------------------------------");
 
 
-		
+	
 		
 
 		/*
