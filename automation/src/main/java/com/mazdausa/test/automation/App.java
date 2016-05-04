@@ -198,8 +198,10 @@ public class App {
 		Boolean resultOverlay360Open = overlay360Open.test(SearchContext.XPATH, props.getProperty("m3h_360_button"), SearchContext.XPATH, props.getProperty("m3h_360_overlay"));
 		System.out.println("M3H Overlay 360 open: " + ((resultOverlay360Open) ? "PASS" : "FAIL"));
 
+//		RotateExteriorImagesTest rotateTest = new RotateExteriorImagesTest(appDriver);
+//		Boolean resultTest = rotateTest.test();
 		
-
+        
 		System.out.println("----------------------------------------------------------------------");
 
 
