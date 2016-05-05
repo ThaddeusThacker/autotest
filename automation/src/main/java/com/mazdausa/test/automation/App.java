@@ -5,6 +5,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import com.mazdausa.test.automation.cases.*;
 import com.mazdausa.test.automation.cases.SearchContext;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -112,32 +114,48 @@ public class App {
 
         //test language popup
 
-		if(switchContextProd.changeContext(SearchContext.ID, props.getProperty("musa_homepage_frameId"))){
-            WebElement languageBtn = prodDriver.findElement(By.id(props.getProperty("musa_homepage_en_button")));
-            languageBtn.click();
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            switchContextProd.backToDefault();
-        }
+//		if(switchContextProd.changeContext(SearchContext.ID, props.getProperty("musa_homepage_frameId"))){
+//            WebElement languageBtn = prodDriver.findElement(By.id(props.getProperty("musa_homepage_en_button")));
+//            languageBtn.click();
+//            try {
+//                Thread.sleep(500);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            switchContextProd.backToDefault();
+//        }
+////
+//		if(switchContextApp.changeContext(SearchContext.ID, props.getProperty("musa_homepage_frameId"))){
+//			WebElement languageBtn = appDriver.findElement(By.id(props.getProperty("musa_homepage_en_button")));
+//			languageBtn.click();
+//			try {
+//				Thread.sleep(500);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+//			switchContextApp.backToDefault();
+//		}
 
-		if(switchContextApp.changeContext(SearchContext.ID, props.getProperty("musa_homepage_frameId"))){
-			WebElement languageBtn = appDriver.findElement(By.id(props.getProperty("musa_homepage_en_button")));
-			languageBtn.click();
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			switchContextApp.backToDefault();
-		}
+		//ExteriorColorTest
+        ArrayList<String> chips_names = new  ArrayList<String>(Arrays.asList(props.getProperty("m3h_exterior_chips_color_names").split(",")));
+        ArrayList<String> chips_labels = new  ArrayList<String>(Arrays.asList(props.getProperty("m3h_exterior_chips_labels").split(",")));
+        ExteriorColorTest exteriorColorTest = new ExteriorColorTest(appDriver);
+		Boolean exteriorColorPrepare = exteriorColorTest.prepareTests(new SearchContext(SearchContext.XPATH, props.getProperty("m3h_exterior_chips_parent_node")), chips_names,chips_labels);
+        Boolean exteriorColorTestDisplayed = exteriorColorTest.testChipsDisplayed();
+        Boolean exteriorColorTestHovered = exteriorColorTest.testChipsHover();
+//        System.out.println(exteriorColorTest.getTextOutput());
+		System.out.println("Exterior Color Component exists: " + ((exteriorColorPrepare) ? "PASS" : "FAIL"));
+        System.out.println("Exterior Color Displayed: " + ((exteriorColorTestDisplayed) ? "PASS" : "FAIL"));
+        System.out.println("Exterior Color Hovered: " + ((exteriorColorTestHovered) ? "PASS" : "FAIL"));
+
+
+//		Boolean intColorTestResult = exteriorColorTest.test("m3h", props, "http://images-approval.mazdausa.com/");
+//		System.out.println("Interior Color test: " + ((intColorTestResult) ? "PASS" : "FAIL"));
 
 		//InteriorColorTest
-		InteriorColorTest intColorTest = new InteriorColorTest(appDriver);
-		Boolean intColorTestResult = intColorTest.test("m3h", props, "http://images-approval.mazdausa.com/");
-		System.out.println("Interior Color test: " + ((intColorTestResult) ? "PASS" : "FAIL"));
+//		InteriorColorTest intColorTest = new InteriorColorTest(appDriver);
+//		Boolean intColorTestResult = intColorTest.test("m3h", props, "http://images-approval.mazdausa.com/");
+//		System.out.println("Interior Color test: " + ((intColorTestResult) ? "PASS" : "FAIL"));
 		
 		//Open Popup disclaimer test
 		OpenPopupTest popupTest = new OpenPopupTest(appDriver);
