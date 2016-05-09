@@ -22,8 +22,9 @@ public class ExteriorColorTest extends BaseTest {
         this.setDriver(webDriver);
     }
 
-    public Boolean prepareTests(SearchContext searchContext, ArrayList<String> names,ArrayList<String> labels){
+    public boolean prepareTests(SearchContext searchContext, ArrayList<String> names,ArrayList<String> labels){
         //Receive chips list and parent node
+        boolean result = false;
         text_output = "PREPARING TEST: \n";
         chips_names = names;
         chips_labels = labels;
@@ -33,18 +34,16 @@ public class ExteriorColorTest extends BaseTest {
             text_output += "chips loaded \n";
             label_element = parent_element.findElement(By.className("option-text")).findElement(By.tagName("span"));
             if(label_element != null){
-                return true;
+                result = true;
             }else{
                 text_output += "label element not found \n";
-                return false;
-
+                result = false;
             }
-
         }else{
             text_output += "parent element not found \n";
-            return false;
-
+            result = false;
         }
+        return result;
     }
 
     public String getTextOutput(){

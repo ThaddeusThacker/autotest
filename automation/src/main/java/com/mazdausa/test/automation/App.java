@@ -124,7 +124,7 @@ public class App {
 //            }
 //            switchContextProd.backToDefault();
 //        }
-////
+//
 //		if(switchContextApp.changeContext(SearchContext.ID, props.getProperty("musa_homepage_frameId"))){
 //			WebElement languageBtn = appDriver.findElement(By.id(props.getProperty("musa_homepage_en_button")));
 //			languageBtn.click();
@@ -144,9 +144,9 @@ public class App {
         Boolean exteriorColorTestDisplayed = exteriorColorTest.testChipsDisplayed();
         Boolean exteriorColorTestHovered = exteriorColorTest.testChipsHover();
 //        System.out.println(exteriorColorTest.getTextOutput());
-		System.out.println("Exterior Color Component exists: " + ((exteriorColorPrepare) ? "PASS" : "FAIL"));
-        System.out.println("Exterior Color Displayed: " + ((exteriorColorTestDisplayed) ? "PASS" : "FAIL"));
-        System.out.println("Exterior Color Hovered: " + ((exteriorColorTestHovered) ? "PASS" : "FAIL"));
+		System.out.println("M3H Exterior Color Component exists: " + ((exteriorColorPrepare) ? "PASS" : "FAIL"));
+        System.out.println("M3H Exterior Color Displayed: " + ((exteriorColorTestDisplayed) ? "PASS" : "FAIL"));
+        System.out.println("M3H Exterior Color Hovered: " + ((exteriorColorTestHovered) ? "PASS" : "FAIL"));
 
 
 //		Boolean intColorTestResult = exteriorColorTest.test("m3h", props, "http://images-approval.mazdausa.com/");
@@ -160,36 +160,36 @@ public class App {
 		//Open Popup disclaimer test
 		OpenPopupTest popupTest = new OpenPopupTest(appDriver);
 		Boolean resultPopup = popupTest.test(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_link"), SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_popup"));
-		System.out.println("Popup open: " + ((resultPopup) ? "PASS" : "FAIL"));
+		System.out.println("M3H disclaimer - Popup open: " + ((resultPopup) ? "PASS" : "FAIL"));
 		OpenPopupTest popupTest2 = new OpenPopupTest(prodDriver);
 		popupTest2.test(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_link"), SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_popup"));//
 
 		//Scroll Test
 		ElementScrollTest box = new ElementScrollTest(appDriver);
 		Boolean resultScroll = box.test(SearchContext.XPATH, props.getProperty("m3h_hero_price_disclaimer_popup"));
-		System.out.println("Scrollbar: " + ((resultScroll) ? "PASS" : "FAIL"));
+		System.out.println("M3H disclaimer - Scrollbar: " + ((resultScroll) ? "PASS" : "FAIL"));
 
 		// Mouse hover test
 		MouseHoverTest mouseHover = new MouseHoverTest(appDriver);
 		Boolean mouseHoverPresent = mouseHover.MousHoverTest(SearchContext.XPATH,props.getProperty("m3h_hero_price_disclaimer"));
-		System.out.println("Mouse Hover action: " + ((mouseHoverPresent) ? "PASS" : "FAIL"));
+		System.out.println("M3H disclaimer - Mouse Hover action: " + ((mouseHoverPresent) ? "PASS" : "FAIL"));
 
 		//Disclaimer Copy test
 		CopyVerificationTest copyVerify = new CopyVerificationTest(appDriver, prodDriver);
 		Boolean copyResult = copyVerify.execute(SearchContext.XPATH,  props.getProperty("m3h_overview_price_disclaimer_textbox"));
-		System.out.println("Copy Result: " + ((copyResult)? "PASS" : "FAIL"));
+		System.out.println("M3H disclaimer - Copy Result: " + ((copyResult)? "PASS" : "FAIL"));
 
 		//Close Pop up disclaimer test
 		ClosePopupTest closeTest = new ClosePopupTest(appDriver);
 	    Boolean closeresult = closeTest.test(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_close_link"), SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_popup"));
-	    System.out.println("Close Popup: " + ((closeresult) ? "PASS" : "FAIL"));
+	    System.out.println("M3H disclaimer - Close Popup: " + ((closeresult) ? "PASS" : "FAIL"));
 
 		//Overview headline / Sub headline copy test 
         CopyVerificationTest copyHeroVerify = new CopyVerificationTest(appDriver, prodDriver);
         Boolean copyHeadlineResult = copyHeroVerify.execute(SearchContext.XPATH, props.getProperty("m3h_header_copy"));
-        System.out.println("Copy Headline Result: " + ((copyHeadlineResult)? "PASS" : "FAIL"));
+        System.out.println("M3H Copy Headline Result: " + ((copyHeadlineResult)? "PASS" : "FAIL"));
         Boolean copySubHeadlineResult = copyHeroVerify.execute(SearchContext.XPATH, props.getProperty("m3h_sub_head_copy"));
-        System.out.println("Copy Headline Result: " + ((copySubHeadlineResult)? "PASS" : "FAIL"));
+        System.out.println("M3H Copy Subheadline Result: " + ((copySubHeadlineResult)? "PASS" : "FAIL"));
 
         // Subheadline font test
         FontSubHeadlineTest fontsubheadlinetest = new FontSubHeadlineTest(appDriver);
@@ -204,7 +204,7 @@ public class App {
         //360 button Copy test
         CopyVerificationTest copyVerifyBtn = new CopyVerificationTest(appDriver, prodDriver);
         Boolean copyResultBtn = copyVerifyBtn.execute(SearchContext.XPATH, props.getProperty("m3h_360_button"));
-        System.out.println("Copy 360 button Result: " + ((copyResult)? "PASS" : "FAIL"));
+        System.out.println("M3H Copy 360 button Result: " + ((copyResult)? "PASS" : "FAIL"));
 
 		//Hover 360 button
 		PropertyOnHoverTest hover360Button = new PropertyOnHoverTest(appDriver);
@@ -222,39 +222,6 @@ public class App {
         
 		System.out.println("----------------------------------------------------------------------");
 
-
-	
-		
-
-		/*
-		 * Create a new instance of the VLP Nav page class and initialize any
-		 * WebElement fields in it.
-		 */
-		//VehicleLandingPage vlpNavProd = new VehicleLandingPage(prodDriver, vlpProdPageUrl);
-
-		// Check the car title to see if it matches what we expect.
-		//Disclaimer priceDisclaimer = vlpNavProd.getPriceDisclaimer();
-
-		//System.out.println("Successfully got Price Disclaimer! : " + priceDisclaimer.toString());
-
-		// Get Panel names
-
-		// Get Overview panel
-		//OverviewPanel overview = new OverPanel()
-
-		// Get headline copy
-
-		// Get disclaimer
-
-		// Test Homepage
-
-		// Test Mazda 6 VLP
-
-		// Test Copy
-
-		// Test Disclaimer
-
-		// Test 360 Rotation	
 
 	}
 }
