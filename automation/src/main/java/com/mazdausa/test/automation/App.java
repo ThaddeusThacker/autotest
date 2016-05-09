@@ -148,14 +148,10 @@ public class App {
         System.out.println("M3H Exterior Color Displayed: " + ((exteriorColorTestDisplayed) ? "PASS" : "FAIL"));
         System.out.println("M3H Exterior Color Hovered: " + ((exteriorColorTestHovered) ? "PASS" : "FAIL"));
 
-
-//		Boolean intColorTestResult = exteriorColorTest.test("m3h", props, "http://images-approval.mazdausa.com/");
-//		System.out.println("Interior Color test: " + ((intColorTestResult) ? "PASS" : "FAIL"));
-
 		//InteriorColorTest
-//		InteriorColorTest intColorTest = new InteriorColorTest(appDriver);
-//		Boolean intColorTestResult = intColorTest.test("m3h", props, "http://images-approval.mazdausa.com/");
-//		System.out.println("Interior Color test: " + ((intColorTestResult) ? "PASS" : "FAIL"));
+		InteriorColorTest intColorTest = new InteriorColorTest(appDriver);
+		Boolean intColorTestResult = intColorTest.test("m3h", props, "http://images-approval.mazdausa.com/");
+		System.out.println("Interior Color test: " + ((intColorTestResult) ? "PASS" : "FAIL"));
 		
 		//Open Popup disclaimer test
 		OpenPopupTest popupTest = new OpenPopupTest(appDriver);
