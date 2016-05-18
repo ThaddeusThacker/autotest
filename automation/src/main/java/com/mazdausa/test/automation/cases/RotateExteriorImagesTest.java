@@ -12,6 +12,18 @@ public class RotateExteriorImagesTest extends BaseTest{
 	       this.setDriver(driver);
 	}
 	
+	private void holdAndRelease(WebElement element, int x, int y){
+		Actions action = new Actions(driver);
+
+		Action dragAndDrop = action.moveToElement(element)
+		   .clickAndHold()
+		   .moveByOffset(x, y)
+		   .release()
+		   .build();
+
+		dragAndDrop.perform();
+	}
+	
 	public Boolean test (){
 		System.out.println("360 frame was open");
 		
@@ -22,21 +34,13 @@ public class RotateExteriorImagesTest extends BaseTest{
 		
 		WebElement source = driver.findElement(By.xpath("//*[@id=\"exterior360\"]/div/div[1]"));
 		
-		WebElement target = driver.findElement(By.xpath("//*[@id=\"exterior360\"]/div/div[3]/a[1]"));
-		
-		
-		Actions builder = new Actions(driver);
-
-		Action dragAndDrop = builder.clickAndHold(source)
-		   .moveToElement(target)
-		   .release(target)
-		   .build();
-
-		dragAndDrop.perform();
-		
-		
-		
-		
+		holdAndRelease(source, 60, 0);
+		holdAndRelease(source, 60, 0);
+		holdAndRelease(source, 60, 0);
+		holdAndRelease(source, 60, 0);
+		holdAndRelease(source, 60, 0);
+		holdAndRelease(source, 60, 0);
+				
 		
 		return testResult;
 	    
