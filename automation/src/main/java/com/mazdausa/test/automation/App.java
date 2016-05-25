@@ -125,16 +125,16 @@ public class App {
 //            switchContextProd.backToDefault();
 //        }
 //
-//		if(switchContextApp.changeContext(SearchContext.ID, props.getProperty("musa_homepage_frameId"))){
-//			WebElement languageBtn = appDriver.findElement(By.id(props.getProperty("musa_homepage_en_button")));
-//			languageBtn.click();
-//			try {
-//				Thread.sleep(500);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
-//			switchContextApp.backToDefault();
-//		}
+		if(switchContextApp.changeContext(SearchContext.ID, props.getProperty("musa_homepage_frameId"))){
+			WebElement languageBtn = appDriver.findElement(By.id(props.getProperty("musa_homepage_en_button")));
+			languageBtn.click();
+			try {
+				Thread.sleep(2500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			switchContextApp.backToDefault();
+		}
 
 		//ExteriorColorTest
         ArrayList<String> chips_names = new  ArrayList<String>(Arrays.asList(props.getProperty("m3h_exterior_chips_color_names").split(",")));
@@ -218,8 +218,31 @@ public class App {
 
 //		RotateExteriorImagesTest rotateTest = new RotateExteriorImagesTest(appDriver);
 //		Boolean resultTest = rotateTest.test();
-		
-        
+
+		//		Tertiary Nav
+		LinkVerificationTest linkVerificationOverview = new LinkVerificationTest(appDriver);
+		Boolean tertiaryOverviewTestResult = linkVerificationOverview.test(SearchContext.ID,props.getProperty("m3h_tertiarynav_overview"), props.getProperty("m3h_tertiarynav_overviewlink"));
+		System.out.println("M3H Overview: Tertiary Nav test: " + ((tertiaryOverviewTestResult) ? "PASS" : "FAIL"));
+
+		LinkVerificationTest linkVerificationSpecs = new LinkVerificationTest(appDriver);
+		Boolean tertiarySpecsTestResult = linkVerificationSpecs.test(SearchContext.ID,props.getProperty("m3h_tertiarynav_specs"), props.getProperty("m3h_tertiarynav_specslink"));
+		System.out.println("M3H Specs: Tertiary Nav test: " + ((tertiarySpecsTestResult) ? "PASS" : "FAIL"));
+
+		LinkVerificationTest linkVerificationSearchInventory = new LinkVerificationTest(appDriver);
+		Boolean tertiarySearchInventoryTestResult = linkVerificationSearchInventory.test(SearchContext.XPATH,props.getProperty("m3h_tertiarynav_searchinventory"), props.getProperty("m3h_tertiarynav_searchinventorylink"));
+		System.out.println("M3H Search Inventory: Tertiary Nav test: " + ((tertiarySearchInventoryTestResult) ? "PASS" : "FAIL"));
+
+		LinkVerificationTest linkVerificationRaq = new LinkVerificationTest(appDriver);
+		Boolean tertiaryRaqTestResult = linkVerificationRaq.test(SearchContext.XPATH,props.getProperty("m3h_tertiarynav_raq"), props.getProperty("m3h_tertiarynav_raqlink"));
+		System.out.println("M3H RAQ: Tertiary Nav test: " + ((tertiaryRaqTestResult) ? "PASS" : "FAIL"));
+
+		LinkVerificationTest linkVerificationBtv = new LinkVerificationTest(appDriver);
+		Boolean tertiaryBtvTestResult = linkVerificationBtv.test(SearchContext.XPATH,props.getProperty("m3h_tertiarynav_buildandprice"), props.getProperty("m3h_tertiarynav_buildandpricelink"));
+		System.out.println("M3H BTV: Tertiary Nav test: " + ((tertiaryBtvTestResult) ? "PASS" : "FAIL"));
+
+
+
+
 		System.out.println("----------------------------------------------------------------------");
 
 
