@@ -112,7 +112,7 @@ public class App {
 		SwitchContextTest switchContextProd = new SwitchContextTest(prodDriver);
 		SwitchContextTest switchContextApp = new SwitchContextTest(appDriver);
 
-//        //test language popup
+        //test language popup
 
 //		if(switchContextProd.changeContext(SearchContext.ID, props.getProperty("musa_homepage_frameId"))){
 //            WebElement languageBtn = prodDriver.findElement(By.id(props.getProperty("musa_homepage_en_button")));
@@ -124,7 +124,7 @@ public class App {
 //            }
 //            switchContextProd.backToDefault();
 //        }
-////
+
 		if(switchContextApp.changeContext(SearchContext.ID, props.getProperty("musa_homepage_frameId"))){
 			WebElement languageBtn = appDriver.findElement(By.id(props.getProperty("musa_homepage_en_button")));
 			languageBtn.click();
@@ -219,7 +219,22 @@ public class App {
 //		RotateExteriorImagesTest rotateTest = new RotateExteriorImagesTest(appDriver);
 //		Boolean resultTest = rotateTest.test();
 
-//		//		Tertiary Nav
+		//NavDotsTest
+		ArrayList<String> dots_labels = new  ArrayList<String>(Arrays.asList(props.getProperty("m3h_dots_copy").split(",")));
+		DotsVerificationTest navDotsTest = new DotsVerificationTest(appDriver, props, "m3h" );
+		Boolean navDotsPrepare = navDotsTest.prepareTests(new SearchContext(SearchContext.XPATH, props.getProperty("m3h_dots_parent")), dots_labels);
+        System.out.println(navDotsTest.getTextOutput());
+        System.out.println("M3H Navigation Dots exists: " + ((navDotsPrepare) ? "PASS" : "FAIL"));
+        Boolean navDotsTestCount = navDotsTest.testCountDots();
+        System.out.println("M3H Navigation Dots Count: " + ((navDotsTestCount) ? "PASS" : "FAIL"));
+        Boolean navDotsTestHovered = navDotsTest.testDotsHover();
+        System.out.println("M3H Navigation Dots Hovered: " + ((navDotsTestHovered) ? "PASS" : "FAIL"));
+        Boolean navDotsTestClick = navDotsTest.testDotsClick();
+        System.out.println("M3H Navigation Dots Click: " + ((navDotsTestClick) ? "PASS" : "FAIL"));
+        Boolean navDotsTestScroll = navDotsTest.testDotsScroll();
+        System.out.println("M3H Navigation Dots Scroll: " + ((navDotsTestScroll) ? "PASS" : "FAIL"));
+
+		//		Tertiary Nav
 		LinkVerificationTest linkVerificationOverview = new LinkVerificationTest(appDriver);
 		Boolean tertiaryOverviewTestResult = linkVerificationOverview.test(SearchContext.ID,props.getProperty("m3h_tertiarynav_overview"), props.getProperty("m3h_tertiarynav_overviewlink"));
 		System.out.println("M3H Overview: Tertiary Nav test: " + ((tertiaryOverviewTestResult) ? "PASS" : "FAIL"));
