@@ -246,15 +246,22 @@ public class App {
 		LinkVerificationTest linkVerificationSearchInventory = new LinkVerificationTest(appDriver);
 		Boolean tertiarySearchInventoryTestResult = linkVerificationSearchInventory.test(SearchContext.XPATH,props.getProperty("m3h_tertiarynav_searchinventory"), props.getProperty("m3h_tertiarynav_searchinventorylink"));
 		System.out.println("M3H Search Inventory: Tertiary Nav test: " + ((tertiarySearchInventoryTestResult) ? "PASS" : "FAIL"));
+		appDriver.get(vlpPageUrlApproval);
 
 		LinkVerificationTest linkVerificationRaq = new LinkVerificationTest(appDriver);
 		Boolean tertiaryRaqTestResult = linkVerificationRaq.test(SearchContext.XPATH,props.getProperty("m3h_tertiarynav_raq"), props.getProperty("m3h_tertiarynav_raqlink"));
 		System.out.println("M3H RAQ: Tertiary Nav test: " + ((tertiaryRaqTestResult) ? "PASS" : "FAIL"));
+		appDriver.get(vlpPageUrlApproval);
+        try {
+            Thread.sleep(2500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 		LinkVerificationTest linkVerificationBtv = new LinkVerificationTest(appDriver);
 		Boolean tertiaryBtvTestResult = linkVerificationBtv.test(SearchContext.XPATH,props.getProperty("m3h_tertiarynav_buildandprice"), props.getProperty("m3h_tertiarynav_buildandpricelink"));
 		System.out.println("M3H BTV: Tertiary Nav test: " + ((tertiaryBtvTestResult) ? "PASS" : "FAIL"));
-
+		appDriver.get(vlpPageUrlApproval);
 
 
 
