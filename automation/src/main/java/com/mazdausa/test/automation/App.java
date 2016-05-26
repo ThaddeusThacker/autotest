@@ -113,17 +113,17 @@ public class App {
 		SwitchContextTest switchContextApp = new SwitchContextTest(appDriver);
 
 //        //test language popup
-//
-////		if(switchContextProd.changeContext(SearchContext.ID, props.getProperty("musa_homepage_frameId"))){
-////            WebElement languageBtn = prodDriver.findElement(By.id(props.getProperty("musa_homepage_en_button")));
-////            languageBtn.click();
-////            try {
-////                Thread.sleep(500);
-////            } catch (InterruptedException e) {
-////                e.printStackTrace();
-////            }
-////            switchContextProd.backToDefault();
-////        }
+
+//		if(switchContextProd.changeContext(SearchContext.ID, props.getProperty("musa_homepage_frameId"))){
+//            WebElement languageBtn = prodDriver.findElement(By.id(props.getProperty("musa_homepage_en_button")));
+//            languageBtn.click();
+//            try {
+//                Thread.sleep(500);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            switchContextProd.backToDefault();
+//        }
 ////
 		if(switchContextApp.changeContext(SearchContext.ID, props.getProperty("musa_homepage_frameId"))){
 			WebElement languageBtn = appDriver.findElement(By.id(props.getProperty("musa_homepage_en_button")));
@@ -135,89 +135,89 @@ public class App {
 			}
 			switchContextApp.backToDefault();
 		}
-//
-//		//ExteriorColorTest
-//        ArrayList<String> chips_names = new  ArrayList<String>(Arrays.asList(props.getProperty("m3h_exterior_chips_color_names").split(",")));
-//        ArrayList<String> chips_labels = new  ArrayList<String>(Arrays.asList(props.getProperty("m3h_exterior_chips_labels").split(",")));
-//        ExteriorColorTest exteriorColorTest = new ExteriorColorTest(appDriver);
-//		Boolean exteriorColorPrepare = exteriorColorTest.prepareTests(new SearchContext(SearchContext.XPATH, props.getProperty("m3h_exterior_chips_parent_node")), chips_names,chips_labels,new SearchContext(SearchContext.XPATH, props.getProperty("m3h_exterior_chips_wrapper")));
-//        Boolean exteriorColorTestDisplayed = exteriorColorTest.testChipsDisplayed();
-//        Boolean exteriorColorTestHovered = exteriorColorTest.testChipsHover();
-//		Boolean exteriorColorTestImages = exteriorColorTest.testChipsImageUpdate();
-//        Boolean exteriorColorTestLayout = exteriorColorTest.testChipsLayout();
-//        System.out.println(exteriorColorTest.getTextOutput());
-//		System.out.println("M3H Exterior Color Component exists: " + ((exteriorColorPrepare) ? "PASS" : "FAIL"));
-//        System.out.println("M3H Exterior Color Displayed: " + ((exteriorColorTestDisplayed) ? "PASS" : "FAIL"));
-//        System.out.println("M3H Exterior Color Hovered: " + ((exteriorColorTestHovered) ? "PASS" : "FAIL"));
-//		System.out.println("M3H Exterior Color Images: " + ((exteriorColorTestImages) ? "PASS" : "FAIL"));
-//        System.out.println("M3H Exterior Color Layout: " + ((exteriorColorTestLayout) ? "PASS" : "FAIL"));
-//
-//		//InteriorColorTest
-//		InteriorColorTest intColorTest = new InteriorColorTest(appDriver);
-//		Boolean intColorTestResult = intColorTest.test("m3h", props, "http://images-approval.mazdausa.com/");
-//		System.out.println("Interior Color test: " + ((intColorTestResult) ? "PASS" : "FAIL"));
-//
-//		//Open Popup disclaimer test
-//		OpenPopupTest popupTest = new OpenPopupTest(appDriver);
-//		Boolean resultPopup = popupTest.test(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_link"), SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_popup"));
-//		System.out.println("M3H disclaimer - Popup open: " + ((resultPopup) ? "PASS" : "FAIL"));
-//		OpenPopupTest popupTest2 = new OpenPopupTest(prodDriver);
-//		popupTest2.test(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_link"), SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_popup"));//
-//
-//		//Scroll Test
-//		ElementScrollTest box = new ElementScrollTest(appDriver);
-//		Boolean resultScroll = box.test(SearchContext.XPATH, props.getProperty("m3h_hero_price_disclaimer_popup"));
-//		System.out.println("M3H disclaimer - Scrollbar: " + ((resultScroll) ? "PASS" : "FAIL"));
-//
-//		// Mouse hover test
-//		MouseHoverTest mouseHover = new MouseHoverTest(appDriver);
-//		Boolean mouseHoverPresent = mouseHover.MousHoverTest(SearchContext.XPATH,props.getProperty("m3h_hero_price_disclaimer"));
-//		System.out.println("M3H disclaimer - Mouse Hover action: " + ((mouseHoverPresent) ? "PASS" : "FAIL"));
-//
-//		//Disclaimer Copy test
-//		CopyVerificationTest copyVerify = new CopyVerificationTest(appDriver, prodDriver);
-//		Boolean copyResult = copyVerify.execute(SearchContext.XPATH,  props.getProperty("m3h_overview_price_disclaimer_textbox"));
-//		System.out.println("M3H disclaimer - Copy Result: " + ((copyResult)? "PASS" : "FAIL"));
-//
-//		//Close Pop up disclaimer test
-//		ClosePopupTest closeTest = new ClosePopupTest(appDriver);
-//	    Boolean closeresult = closeTest.test(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_close_link"), SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_popup"));
-//	    System.out.println("M3H disclaimer - Close Popup: " + ((closeresult) ? "PASS" : "FAIL"));
-//
-//		//Overview headline / Sub headline copy test 
-//        CopyVerificationTest copyHeroVerify = new CopyVerificationTest(appDriver, prodDriver);
-//        Boolean copyHeadlineResult = copyHeroVerify.execute(SearchContext.XPATH, props.getProperty("m3h_header_copy"));
-//        System.out.println("M3H Copy Headline Result: " + ((copyHeadlineResult)? "PASS" : "FAIL"));
-//        Boolean copySubHeadlineResult = copyHeroVerify.execute(SearchContext.XPATH, props.getProperty("m3h_sub_head_copy"));
-//        System.out.println("M3H Copy Subheadline Result: " + ((copySubHeadlineResult)? "PASS" : "FAIL"));
-//
-//        // Subheadline font test
-//        FontSubHeadlineTest fontsubheadlinetest = new FontSubHeadlineTest(appDriver);
-//        Boolean fontsubheadlinepresent = fontsubheadlinetest.FontSubHeadlineTest(SearchContext.XPATH,props.getProperty("m3h_sub_head_copy"));
-//        System.out.println("Subheadline font test M3H overview: " + ((fontsubheadlinepresent) ? "PASS" : "FAIL"));
-//
-//        //Font Headline Test
-//        FontHeadlineTest fontheadlinetest = new FontHeadlineTest(appDriver);
-//        Boolean fontheadlinepresent = fontheadlinetest.FontHeadlineTest(SearchContext.XPATH,props.getProperty("m3h_header_copy"));
-//        System.out.println("Headline font test M3H overview: " + ((fontheadlinepresent) ? "PASS" : "FAIL"));
-//
-//        //360 button Copy test
-//        CopyVerificationTest copyVerifyBtn = new CopyVerificationTest(appDriver, prodDriver);
-//        Boolean copyResultBtn = copyVerifyBtn.execute(SearchContext.XPATH, props.getProperty("m3h_360_button"));
-//        System.out.println("M3H Copy 360 button Result: " + ((copyResult)? "PASS" : "FAIL"));
-//
-//		//Hover 360 button
-//		PropertyOnHoverTest hover360Button = new PropertyOnHoverTest(appDriver);
-//		Boolean resultHover360Button = hover360Button.test(SearchContext.XPATH, props.getProperty("m3h_360_button"), "background-image");
-//		System.out.println("M3H Hover 360 button: " + ((resultHover360Button) ? "PASS" : "FAIL"));
-//
-//		//Open 360 overlay
-//		OpenPopupTest overlay360Open = new OpenPopupTest(appDriver);
-//		Boolean resultOverlay360Open = overlay360Open.test(SearchContext.XPATH, props.getProperty("m3h_360_button"), SearchContext.XPATH, props.getProperty("m3h_360_overlay"));
-//		System.out.println("M3H Overlay 360 open: " + ((resultOverlay360Open) ? "PASS" : "FAIL"));
-//
-////		RotateExteriorImagesTest rotateTest = new RotateExteriorImagesTest(appDriver);
-////		Boolean resultTest = rotateTest.test();
+
+		//ExteriorColorTest
+        ArrayList<String> chips_names = new  ArrayList<String>(Arrays.asList(props.getProperty("m3h_exterior_chips_color_names").split(",")));
+        ArrayList<String> chips_labels = new  ArrayList<String>(Arrays.asList(props.getProperty("m3h_exterior_chips_labels").split(",")));
+        ExteriorColorTest exteriorColorTest = new ExteriorColorTest(appDriver);
+		Boolean exteriorColorPrepare = exteriorColorTest.prepareTests(new SearchContext(SearchContext.XPATH, props.getProperty("m3h_exterior_chips_parent_node")), chips_names,chips_labels,new SearchContext(SearchContext.XPATH, props.getProperty("m3h_exterior_chips_wrapper")));
+        Boolean exteriorColorTestDisplayed = exteriorColorTest.testChipsDisplayed();
+        Boolean exteriorColorTestHovered = exteriorColorTest.testChipsHover();
+		Boolean exteriorColorTestImages = exteriorColorTest.testChipsImageUpdate();
+        Boolean exteriorColorTestLayout = exteriorColorTest.testChipsLayout();
+        System.out.println(exteriorColorTest.getTextOutput());
+		System.out.println("M3H Exterior Color Component exists: " + ((exteriorColorPrepare) ? "PASS" : "FAIL"));
+        System.out.println("M3H Exterior Color Displayed: " + ((exteriorColorTestDisplayed) ? "PASS" : "FAIL"));
+        System.out.println("M3H Exterior Color Hovered: " + ((exteriorColorTestHovered) ? "PASS" : "FAIL"));
+		System.out.println("M3H Exterior Color Images: " + ((exteriorColorTestImages) ? "PASS" : "FAIL"));
+        System.out.println("M3H Exterior Color Layout: " + ((exteriorColorTestLayout) ? "PASS" : "FAIL"));
+
+		//InteriorColorTest
+		InteriorColorTest intColorTest = new InteriorColorTest(appDriver);
+		Boolean intColorTestResult = intColorTest.test("m3h", props, "http://images-approval.mazdausa.com/");
+		System.out.println("Interior Color test: " + ((intColorTestResult) ? "PASS" : "FAIL"));
+
+		//Open Popup disclaimer test
+		OpenPopupTest popupTest = new OpenPopupTest(appDriver);
+		Boolean resultPopup = popupTest.test(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_link"), SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_popup"));
+		System.out.println("M3H disclaimer - Popup open: " + ((resultPopup) ? "PASS" : "FAIL"));
+		OpenPopupTest popupTest2 = new OpenPopupTest(prodDriver);
+		popupTest2.test(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_link"), SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_popup"));//
+
+		//Scroll Test
+		ElementScrollTest box = new ElementScrollTest(appDriver);
+		Boolean resultScroll = box.test(SearchContext.XPATH, props.getProperty("m3h_hero_price_disclaimer_popup"));
+		System.out.println("M3H disclaimer - Scrollbar: " + ((resultScroll) ? "PASS" : "FAIL"));
+
+		// Mouse hover test
+		MouseHoverTest mouseHover = new MouseHoverTest(appDriver);
+		Boolean mouseHoverPresent = mouseHover.MousHoverTest(SearchContext.XPATH,props.getProperty("m3h_hero_price_disclaimer"));
+		System.out.println("M3H disclaimer - Mouse Hover action: " + ((mouseHoverPresent) ? "PASS" : "FAIL"));
+
+		//Disclaimer Copy test
+		CopyVerificationTest copyVerify = new CopyVerificationTest(appDriver, prodDriver);
+		Boolean copyResult = copyVerify.execute(SearchContext.XPATH,  props.getProperty("m3h_overview_price_disclaimer_textbox"));
+		System.out.println("M3H disclaimer - Copy Result: " + ((copyResult)? "PASS" : "FAIL"));
+
+		//Close Pop up disclaimer test
+		ClosePopupTest closeTest = new ClosePopupTest(appDriver);
+	    Boolean closeresult = closeTest.test(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_close_link"), SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_popup"));
+	    System.out.println("M3H disclaimer - Close Popup: " + ((closeresult) ? "PASS" : "FAIL"));
+
+		//Overview headline / Sub headline copy test 
+        CopyVerificationTest copyHeroVerify = new CopyVerificationTest(appDriver, prodDriver);
+        Boolean copyHeadlineResult = copyHeroVerify.execute(SearchContext.XPATH, props.getProperty("m3h_header_copy"));
+        System.out.println("M3H Copy Headline Result: " + ((copyHeadlineResult)? "PASS" : "FAIL"));
+        Boolean copySubHeadlineResult = copyHeroVerify.execute(SearchContext.XPATH, props.getProperty("m3h_sub_head_copy"));
+        System.out.println("M3H Copy Subheadline Result: " + ((copySubHeadlineResult)? "PASS" : "FAIL"));
+
+        // Subheadline font test
+        FontSubHeadlineTest fontsubheadlinetest = new FontSubHeadlineTest(appDriver);
+        Boolean fontsubheadlinepresent = fontsubheadlinetest.FontSubHeadlineTest(SearchContext.XPATH,props.getProperty("m3h_sub_head_copy"));
+        System.out.println("Subheadline font test M3H overview: " + ((fontsubheadlinepresent) ? "PASS" : "FAIL"));
+
+        //Font Headline Test
+        FontHeadlineTest fontheadlinetest = new FontHeadlineTest(appDriver);
+        Boolean fontheadlinepresent = fontheadlinetest.FontHeadlineTest(SearchContext.XPATH,props.getProperty("m3h_header_copy"));
+        System.out.println("Headline font test M3H overview: " + ((fontheadlinepresent) ? "PASS" : "FAIL"));
+
+        //360 button Copy test
+        CopyVerificationTest copyVerifyBtn = new CopyVerificationTest(appDriver, prodDriver);
+        Boolean copyResultBtn = copyVerifyBtn.execute(SearchContext.XPATH, props.getProperty("m3h_360_button"));
+        System.out.println("M3H Copy 360 button Result: " + ((copyResult)? "PASS" : "FAIL"));
+
+		//Hover 360 button
+		PropertyOnHoverTest hover360Button = new PropertyOnHoverTest(appDriver);
+		Boolean resultHover360Button = hover360Button.test(SearchContext.XPATH, props.getProperty("m3h_360_button"), "background-image");
+		System.out.println("M3H Hover 360 button: " + ((resultHover360Button) ? "PASS" : "FAIL"));
+
+		//Open 360 overlay
+		OpenPopupTest overlay360Open = new OpenPopupTest(appDriver);
+		Boolean resultOverlay360Open = overlay360Open.test(SearchContext.XPATH, props.getProperty("m3h_360_button"), SearchContext.XPATH, props.getProperty("m3h_360_overlay"));
+		System.out.println("M3H Overlay 360 open: " + ((resultOverlay360Open) ? "PASS" : "FAIL"));
+
+//		RotateExteriorImagesTest rotateTest = new RotateExteriorImagesTest(appDriver);
+//		Boolean resultTest = rotateTest.test();
 
 //		//		Tertiary Nav
 		LinkVerificationTest linkVerificationOverview = new LinkVerificationTest(appDriver);
