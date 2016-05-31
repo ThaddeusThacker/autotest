@@ -25,6 +25,11 @@ public class LinkVerificationTest extends BaseTest {
             SearchContext clickLink = new SearchContext(searchContext, contextValue);
             element = getWebElement(clickLink);
             element.click();
+            try {
+                Thread.sleep(2500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
 
             if (targetURL.compareTo(driver.getCurrentUrl()) == 0) {
@@ -33,6 +38,8 @@ public class LinkVerificationTest extends BaseTest {
 
             } else {
                 testResult = false;
+                System.out.println("Target URL = " + targetURL);
+                System.out.println("Current URL = " + driver.getCurrentUrl());
 
             }
 
