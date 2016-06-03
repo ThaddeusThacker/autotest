@@ -233,6 +233,7 @@ public class App {
         Boolean navDotsTestScroll = navDotsTest.testDotsScroll();
         System.out.println("M3H Navigation Dots Scroll: " + ((navDotsTestScroll) ? "PASS" : "FAIL"));
 		System.out.println(navDotsTest.getTextOutput());
+
 		//		Tertiary Nav
 		LinkVerificationTest linkVerificationOverview = new LinkVerificationTest(appDriver);
 		Boolean tertiaryOverviewTestResult = linkVerificationOverview.test(SearchContext.ID,props.getProperty("m3h_tertiarynav_overview"), props.getProperty("m3h_tertiarynav_overviewlink"));
@@ -256,7 +257,6 @@ public class App {
 		Boolean tertiaryBtvTestResult = linkVerificationBtv.test(SearchContext.XPATH,props.getProperty("m3h_tertiarynav_buildandprice"), props.getProperty("m3h_tertiarynav_buildandpricelink"));
 		System.out.println("M3H BTV: Tertiary Nav test: " + ((tertiaryBtvTestResult) ? "PASS" : "FAIL"));
 		appDriver.get(vlpPageUrlApproval);
-
 
 
 		System.out.println("----------------------------------------------------------------------");
