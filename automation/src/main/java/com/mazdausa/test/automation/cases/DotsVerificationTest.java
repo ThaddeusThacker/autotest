@@ -8,6 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import java.util.ArrayList;
 import java.util.Properties;
 
+
 public class DotsVerificationTest extends BaseTest {
 
     private WebElement parent;
