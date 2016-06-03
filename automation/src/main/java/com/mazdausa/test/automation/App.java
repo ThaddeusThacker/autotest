@@ -223,7 +223,6 @@ public class App {
 		ArrayList<String> dots_labels = new  ArrayList<String>(Arrays.asList(props.getProperty("m3h_dots_copy").split(",")));
 		DotsVerificationTest navDotsTest = new DotsVerificationTest(appDriver, props, "m3h" );
 		Boolean navDotsPrepare = navDotsTest.prepareTests(new SearchContext(SearchContext.XPATH, props.getProperty("m3h_dots_parent")), dots_labels);
-        System.out.println(navDotsTest.getTextOutput());
         System.out.println("M3H Navigation Dots exists: " + ((navDotsPrepare) ? "PASS" : "FAIL"));
         Boolean navDotsTestCount = navDotsTest.testCountDots();
         System.out.println("M3H Navigation Dots Count: " + ((navDotsTestCount) ? "PASS" : "FAIL"));
@@ -233,7 +232,7 @@ public class App {
         System.out.println("M3H Navigation Dots Click: " + ((navDotsTestClick) ? "PASS" : "FAIL"));
         Boolean navDotsTestScroll = navDotsTest.testDotsScroll();
         System.out.println("M3H Navigation Dots Scroll: " + ((navDotsTestScroll) ? "PASS" : "FAIL"));
-
+		System.out.println(navDotsTest.getTextOutput());
 		//		Tertiary Nav
 		LinkVerificationTest linkVerificationOverview = new LinkVerificationTest(appDriver);
 		Boolean tertiaryOverviewTestResult = linkVerificationOverview.test(SearchContext.ID,props.getProperty("m3h_tertiarynav_overview"), props.getProperty("m3h_tertiarynav_overviewlink"));
@@ -252,11 +251,6 @@ public class App {
 		Boolean tertiaryRaqTestResult = linkVerificationRaq.test(SearchContext.XPATH,props.getProperty("m3h_tertiarynav_raq"), props.getProperty("m3h_tertiarynav_raqlink"));
 		System.out.println("M3H RAQ: Tertiary Nav test: " + ((tertiaryRaqTestResult) ? "PASS" : "FAIL"));
 		appDriver.get(vlpPageUrlApproval);
-        try {
-            Thread.sleep(2500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
 		LinkVerificationTest linkVerificationBtv = new LinkVerificationTest(appDriver);
 		Boolean tertiaryBtvTestResult = linkVerificationBtv.test(SearchContext.XPATH,props.getProperty("m3h_tertiarynav_buildandprice"), props.getProperty("m3h_tertiarynav_buildandpricelink"));
@@ -269,4 +263,5 @@ public class App {
 
 
 	}
+
 }

@@ -5,7 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Properties;
 
 
@@ -52,6 +54,7 @@ public class DotsVerificationTest extends BaseTest {
     }
 
     public Boolean testCountDots() {
+        text_output += "TESTING DOTS COUNT \n";
         Boolean test_result = true;
         int car_count =  Integer.parseInt(props.getProperty(Code + "_dots_count"));
         // CarCount is the number of the dots declared on properties
@@ -72,34 +75,46 @@ public class DotsVerificationTest extends BaseTest {
         WebElement tooltip;
         for(WebElement dot: dots){
             //Obtain the background color
-            initial_background_value = dot.getCssValue("background-color");
+            initial_background_value = dot.findElement(By.className("circle")).getCssValue("background-position");
             //Hover
             Actions action = new Actions(driver);
-            action.moveToElement(dot).build().perform();
+            action.moveToElement(dot.findElement(By.tagName("a"))).build().perform();
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             //Obtain the hovered background color
-            hovered_background_value = dot.getCssValue("background-color");
+            hovered_background_value = dot.findElement(By.className("circle")).getCssValue("background-position");
             //Check background color
-            if(!initial_background_value.equals(hovered_background_value)){
-                test_result = false;
+            if(!dot.findElement(By.tagName("a")).getAttribute("class").contains("active")){
+                if(initial_background_value.equals(hovered_background_value)){
+                    test_result = false;
+                    text_output += "Initial color: " + initial_background_value + " -- Hovered color: " + hovered_background_value + " \n";
+                }
             }
             //Check cursor pointer
-            if(!dot.getCssValue("cursor").equals("pointer")){
+            if(!dot.findElement(By.tagName("a")).getCssValue("cursor").equals("pointer")){
                 test_result = false;
             }
             //Check label visible
             tooltip = dot.findElement(By.className("tooltip"));
             if(!tooltip.isDisplayed()){
                 test_result = false;
+                text_output += "tooltip not visible: " + tooltip.findElement(By.className("text")).getText() + " \n";
             }
             //Check label copy
             dot_label = dot.findElement(By.className("text")).getText();
-            if(!dot_label.equals(dots_labels.get(label_count))){
+            String test_value = null;
+            try {
+                test_value = new String(dots_labels.get(label_count).getBytes("ISO-8859-1"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+//            text_output += "testing copy for tooltip: " + dot_label + " -- " + test_value + " \n";
+            if(!dot_label.trim().equals(test_value)){
                 test_result = false;
+                text_output += "tooltip copy fail: " + dot_label + " -- " + test_value + " \n";
             }
             label_count++;
         }
@@ -112,15 +127,16 @@ public class DotsVerificationTest extends BaseTest {
         text_output += "TESTING DOTS CLICK \n";
         Boolean test_result = true;
         for(WebElement dot: dots){
+            dot.findElement(By.tagName("a")).click();
             try {
-                Thread.sleep(100);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            dot.findElement(By.tagName("a")).click();
             String hash = driver.getCurrentUrl().substring(driver.getCurrentUrl().indexOf('#'));
-            if(!hash.equals(dot.findElement(By.tagName("a")).getAttribute("href"))){
+            if(!hash.equals(dot.findElement(By.tagName("a")).getAttribute("href").substring(driver.getCurrentUrl().indexOf('#')))){
                 test_result = false;
+                text_output += "hash copy: " + hash + " -- " + dot.findElement(By.tagName("a")).getAttribute("href") + " \n";
             }
         }
         return test_result;
@@ -136,10 +152,11 @@ public class DotsVerificationTest extends BaseTest {
         WebElement tooltip;
         String initial_background_value;
         String hovered_background_value;
+        Collections.reverse(dots);
         for(WebElement dot: dots){
-            initial_background_value = dot.getCssValue("background-color");
+            initial_background_value = dot.findElement(By.className("circle")).getCssValue("background-position");
             try {
-                Thread.sleep(100);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -150,7 +167,7 @@ public class DotsVerificationTest extends BaseTest {
                 Actions action = new Actions(driver);
                 action.moveToElement(panel).build().perform();
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -158,11 +175,15 @@ public class DotsVerificationTest extends BaseTest {
                 tooltip = dot.findElement(By.className("tooltip"));
                 if(!tooltip.isDisplayed()){
                     test_result = false;
+                    text_output += "tooltip not visible: " + tooltip.findElement(By.className("text")).getText() + "," + panel_id + " \n";
                 }
                 //Check background color
-                hovered_background_value = dot.getCssValue("background-color");
-                if(!initial_background_value.equals(hovered_background_value)){
-                    test_result = false;
+                hovered_background_value = dot.findElement(By.className("circle")).getCssValue("background-position");
+                if(!dot.findElement(By.tagName("a")).getAttribute("class").contains("active")){
+                    if(initial_background_value.equals(hovered_background_value)){
+                        test_result = false;
+                        text_output += "Initial color: " + initial_background_value + " -- Hovered color: " + hovered_background_value + " \n";
+                    }
                 }
             }else{
                 text_output += "unable to find panel:" + panel_id + " \n";
