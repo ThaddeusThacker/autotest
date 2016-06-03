@@ -232,7 +232,7 @@ public class App {
         System.out.println("M3H Navigation Dots Click: " + ((navDotsTestClick) ? "PASS" : "FAIL"));
         Boolean navDotsTestScroll = navDotsTest.testDotsScroll();
         System.out.println("M3H Navigation Dots Scroll: " + ((navDotsTestScroll) ? "PASS" : "FAIL"));
-		System.out.println(navDotsTest.getTextOutput());
+		//System.out.println(navDotsTest.getTextOutput());
 		//		Tertiary Nav
 		LinkVerificationTest linkVerificationOverview = new LinkVerificationTest(appDriver);
 		Boolean tertiaryOverviewTestResult = linkVerificationOverview.test(SearchContext.ID,props.getProperty("m3h_tertiarynav_overview"), props.getProperty("m3h_tertiarynav_overviewlink"));
