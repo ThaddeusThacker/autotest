@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Properties;
 
+
 public class DotsVerificationTest extends BaseTest {
 
     private WebElement parent;
