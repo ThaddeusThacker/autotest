@@ -9,7 +9,11 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Properties;
-
+/**
+ *  Test to see if the navigation dots on the VLP are working as expected
+ *  Verify if the number of dots is correct, mouseover on the dots works as expected (changed de color and the copy is displayed).
+ *  Verify if each dot redirects to the correct panel
+ */
 
 public class DotsVerificationTest extends BaseTest {
 
@@ -29,9 +33,10 @@ public class DotsVerificationTest extends BaseTest {
 
     }
 
+
+    //Prepare the dots list
     public boolean prepareTests(SearchContext searchContext, ArrayList<String> labels){
-        //,ArrayList<String> labels){
-        //Receive dots list and parent node
+         //Receive dots list and parent node
         boolean result = false;
         text_output = "PREPARING TEST: \n";
         dots_labels = labels;
@@ -52,7 +57,7 @@ public class DotsVerificationTest extends BaseTest {
 
         return text_output;
     }
-
+    //Verify the correct dots number
     public Boolean testCountDots() {
         text_output += "TESTING DOTS COUNT \n";
         Boolean test_result = true;
@@ -63,7 +68,7 @@ public class DotsVerificationTest extends BaseTest {
         }
         return test_result;
     }
-
+    //Verify mousehover funtionality
     public Boolean testDotsHover() {
         //For each dot in list, hover element and test background color and right copy.
         text_output += "TESTING DOTS HOVER \n";
@@ -141,7 +146,7 @@ public class DotsVerificationTest extends BaseTest {
         }
         return test_result;
     }
-
+    //Verify if each dot redirects to the correct panel
     public Boolean testDotsScroll() {
         //For each dot in list, click element
         //Check dot URL
