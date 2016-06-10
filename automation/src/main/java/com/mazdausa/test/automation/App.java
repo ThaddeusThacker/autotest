@@ -65,49 +65,53 @@ public class App {
 			System.out.println("No bueno.  Properties did not get loaded");
 		}
 
+
 		// Create a new instance of a driver
-		WebDriver appDriver = new FirefoxDriver();
+    	WebDriver appDriver = new FirefoxDriver();
 		WebDriver prodDriver = new FirefoxDriver();
 
-		appDriver.get(vlpPageUrlApproval);
+        prodDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        appDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+
+		appDriver.get("http://google.com");
 		prodDriver.get(vlpProdPageUrl);
+
 
 		
 		/* Set up Implicit Wait time before throwing an exception.
 		 * See:  http://toolsqa.com/selenium-webdriver/wait-commands/
 		 */
-		prodDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		appDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	//	appDriver.manage().window().maximize();
-	//	prodDriver.manage().window().maximize();
+
+		appDriver.manage().window().maximize();
+		prodDriver.manage().window().maximize();
 
 
 		//Authentication on approval
-		if (appDriver.getCurrentUrl().contains("portaltest")){
+        if (appDriver.getCurrentUrl().contains("portaltest")){
 
-			System.out.println("Redirect to validation approval " + appDriver.getCurrentUrl());
-			WebElement user = appDriver.findElement(By.xpath(props.getProperty("user_field")));
-			user.sendKeys(props.getProperty("user"));
-			WebElement pass = appDriver.findElement(By.xpath(props.getProperty("pass_field")));
-			pass.sendKeys(props.getProperty("pass"));
-			WebElement logonBtn = appDriver.findElement(By.xpath(props.getProperty("logon_button")));
-			logonBtn.click();
+            System.out.println("Redirect to validation approval " + appDriver.getCurrentUrl());
+            WebElement user = appDriver.findElement(By.xpath(props.getProperty("user_field")));
+            user.sendKeys(props.getProperty("user"));
+            WebElement pass = appDriver.findElement(By.xpath(props.getProperty("pass_field")));
+            pass.sendKeys(props.getProperty("pass"));
+            WebElement logonBtn = appDriver.findElement(By.xpath(props.getProperty("logon_button")));
+            logonBtn.click();
 
-			try {
-				Alert alert = appDriver.switchTo().alert();
-				alert.accept();
-				//if alert present, accept and move on.
-				appDriver.get(vlpPageUrlApproval);
+            try {
+                Alert alert = appDriver.switchTo().alert();
+                alert.accept();
+                //if alert present, accept and move on.
+                appDriver.get(vlpPageUrlApproval);
                 Alert alert2 = appDriver.switchTo().alert();
                 alert2.accept();
-			}
-			catch (NoAlertPresentException e) {
-				//System.out.println(e.toString());
-				//e.printStackTrace();
-				//do what you normally would if you didn't have the alert.
-			}
-		}
-
+            }
+            catch (NoAlertPresentException e) {
+                //System.out.println(e.toString());
+                //e.printStackTrace();
+                //do what you normally would if you didn't have the alert.
+            }
+        }
 
 		SwitchContextTest switchContextProd = new SwitchContextTest(prodDriver);
 		SwitchContextTest switchContextApp = new SwitchContextTest(appDriver);
@@ -124,17 +128,26 @@ public class App {
 //            }
 //            switchContextProd.backToDefault();
 //        }
+        WebElement lang_box;
+        try {
+             lang_box = appDriver.findElement(By.id(props.getProperty("musa_homepage_frameId")));
 
-		if(switchContextApp.changeContext(SearchContext.ID, props.getProperty("musa_homepage_frameId"))){
-			WebElement languageBtn = appDriver.findElement(By.id(props.getProperty("musa_homepage_en_button")));
-			languageBtn.click();
-			try {
-				Thread.sleep(2500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			switchContextApp.backToDefault();
-		}
+            if(lang_box != null && lang_box.isDisplayed()){
+                if(switchContextApp.changeContext(SearchContext.ID, props.getProperty("musa_homepage_frameId"))){
+                    WebElement languageBtn = appDriver.findElement(By.id(props.getProperty("musa_homepage_en_button")));
+                    languageBtn.click();
+                    try {
+                        Thread.sleep(2500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    switchContextApp.backToDefault();
+                }
+            }
+        } catch (Exception e){
+
+        }
+
 
 		//ExteriorColorTest
         ArrayList<String> chips_names = new  ArrayList<String>(Arrays.asList(props.getProperty("m3h_exterior_chips_color_names").split(",")));
@@ -158,7 +171,7 @@ public class App {
 		System.out.println("Interior Color test: " + ((intColorTestResult) ? "PASS" : "FAIL"));
 
 		//Open Popup disclaimer test
-		OpenPopupTest popupTest = new OpenPopupTest(appDriver);
+    	OpenPopupTest popupTest = new OpenPopupTest(appDriver);
 		Boolean resultPopup = popupTest.test(SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_link"), SearchContext.XPATH, props.getProperty("m3h_overview_price_disclaimer_popup"));
 		System.out.println("M3H disclaimer - Popup open: " + ((resultPopup) ? "PASS" : "FAIL"));
 		OpenPopupTest popupTest2 = new OpenPopupTest(prodDriver);
@@ -233,7 +246,34 @@ public class App {
         Boolean navDotsTestScroll = navDotsTest.testDotsScroll();
         System.out.println("M3H Navigation Dots Scroll: " + ((navDotsTestScroll) ? "PASS" : "FAIL"));
 		//System.out.println(navDotsTest.getTextOutput());
-		//		Tertiary Nav
+
+		//Tertiary Nav Title Copy test
+		CopyVerificationTest tertiaryCopyTest = new CopyVerificationTest(appDriver, prodDriver);
+		Boolean tertiaryTitleCopyResult = tertiaryCopyTest.execute(SearchContext.XPATH,  props.getProperty("m3h_tertiarynav_title"));
+		System.out.println("M3H Tertiary Nav Title  - Copy Result: " + ((tertiaryTitleCopyResult)? "PASS" : "FAIL"));
+
+		//Tertiary Nav SubTitle Copy test
+		Boolean tertiarySubtitleCopyResult = tertiaryCopyTest.execute(SearchContext.XPATH,  props.getProperty("m3h_tertiarynav_subtitle"));
+		System.out.println("M3H Tertiary Nav Subtitle - Copy Result: " + ((tertiarySubtitleCopyResult)? "PASS" : "FAIL"));
+
+		//Tertiary Nav disclaimer Copy test
+		popupTest.test(SearchContext.XPATH, props.getProperty("m3h_tertiarynav_disclaimer_asterisk"), SearchContext.XPATH, props.getProperty("m3h_tertiarynav_disclaimer_copy_approval"));
+		popupTest2.test(SearchContext.XPATH, props.getProperty("m3h_tertiarynav_disclaimer_asterisk"), SearchContext.XPATH, props.getProperty("m3h_tertiarynav_disclaimer_copy_production"));
+		Boolean tertiaryDisclaimerCopyResult = tertiaryCopyTest.executeNoElementMatch(SearchContext.XPATH,  props.getProperty("m3h_tertiarynav_disclaimer_copy_approval"),SearchContext.XPATH,  props.getProperty("m3h_tertiarynav_disclaimer_copy_production"));
+		System.out.println("M3H Tertiary Nav Disclaimer - Copy Result: " + ((tertiaryDisclaimerCopyResult)? "PASS" : "FAIL"));
+
+		// Tertiary Nav onHover Test
+		WebElement tertiaryParent = appDriver.findElement(By.xpath(props.getProperty("m3h_tertiarynav_container")));
+		PropertyOnHoverTest tertiaryOnHoverTest = new PropertyOnHoverTest(appDriver);
+		Boolean tertiaryHoverResult = tertiaryOnHoverTest.testCollection(tertiaryParent, "tag", "a", "color");
+		System.out.println("M3H Hover Tertiary Nav: " + ((tertiaryHoverResult) ? "PASS" : "FAIL"));
+
+		// Tertiary Nav Shop dropdown link
+		OpenPopupTest tertiaryShopDropdown = new OpenPopupTest(appDriver);
+		Boolean tertiaryShopDropdownResult = tertiaryShopDropdown.test(SearchContext.XPATH, props.getProperty("m3h_tertiarynav_shop"),SearchContext.XPATH, props.getProperty("m3h_tertiarynav_shop_dropdown"));
+		System.out.println("M3H Tertiary Nav Shop Dropdown: " + ((tertiaryShopDropdownResult) ? "PASS" : "FAIL"));
+
+		// Tertiary Nav Links
 		LinkVerificationTest linkVerificationOverview = new LinkVerificationTest(appDriver);
 		Boolean tertiaryOverviewTestResult = linkVerificationOverview.test(SearchContext.ID,props.getProperty("m3h_tertiarynav_overview"), props.getProperty("m3h_tertiarynav_overviewlink"));
 		System.out.println("M3H Overview: Tertiary Nav test: " + ((tertiaryOverviewTestResult) ? "PASS" : "FAIL"));
@@ -258,10 +298,7 @@ public class App {
 		appDriver.get(vlpPageUrlApproval);
 
 
-
-		System.out.println("----------------------------------------------------------------------");
-
-
+        System.out.println("----------------------------------------------------------------------");
 	}
 
 }

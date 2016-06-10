@@ -22,7 +22,9 @@ public class ExteriorColorTest extends BaseTest {
 
         this.setDriver(webDriver);
     }
-
+    /**
+     *  Get required resources to run tests.
+     */
     public boolean prepareTests(SearchContext searchContext, ArrayList<String> names,ArrayList<String> labels,SearchContext image_wrapper_context ){
         //Receive chips list and parent node
         boolean result = false;
@@ -53,6 +55,10 @@ public class ExteriorColorTest extends BaseTest {
         return text_output;
     }
 
+    /**
+     *  Test to see if all expected Color Chips are displayed in the
+     *  browser at their expected XPath location.
+     */
     public Boolean testChipsDisplayed(){
         //Receive chips list and parent node
         //For each chip in list, find element and test isDisplayed?
@@ -75,6 +81,10 @@ public class ExteriorColorTest extends BaseTest {
         return test_result;
     }
 
+    /**
+     *  Test to see if all Color Chips are displayed with a red ring
+     *  when the color chip is hovered.
+     */
     public Boolean testChipsHover() {
         //Receive chips list, parent node, color names
         //For each chip in list, hover element and test red ring and right copy.
@@ -105,7 +115,10 @@ public class ExteriorColorTest extends BaseTest {
         return test_result;
     }
 
-
+    /**
+     *  Test to see if image are loaded on click event for
+     *  each exterior color chip.
+     */
     public Boolean testChipsImageUpdate(){
         //Receive chips list, parent node, image names
         //For each chip in list, click element and test image update.
@@ -137,6 +150,10 @@ public class ExteriorColorTest extends BaseTest {
         return test_result;
     }
 
+    /**
+     *  Test to see if all Color Chips are displayed in the right horizontal position
+     *  according to their coordinates.
+     */
     public Boolean testChipsLayout(){
         //Receive chips list, parent node
         //For each chip in list, calculate position and validate order.

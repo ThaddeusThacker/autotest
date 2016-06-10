@@ -57,6 +57,43 @@ public class CopyVerificationTest extends BaseTest {
 
 	}
 
+	public Boolean executeNoElementMatch(int copyContextApp, String copyValueApp, int copyContextProd, String copyValueProd){
+		Boolean testResult =false;
+		try
+		{
+			try
+			{
+
+				// get text on APP
+				this.setDriver(appDriver);
+				SearchContext contextPopup = new SearchContext(copyContextApp, copyValueApp);
+				WebElement copyelement =  getWebElement(contextPopup);
+				String appCopy = copyelement.getText();
+
+				// get text on PROD
+				this.setDriver(prodDriver);
+				SearchContext contextPopup2 = new SearchContext(copyContextProd, copyValueProd);;
+				copyelement =  getWebElement(contextPopup2);
+				String prodCopy = copyelement.getText();
+
+				// Compare both text
+				testResult = appCopy.equals(prodCopy); //compare method
+
+
+			}catch(Exception e){
+
+				System.out.println(e.getMessage());
+
+			}
+
+		}catch(Exception e){
+
+			System.out.println(e.getMessage());
+
+		}
+		return testResult;
+
+	}
 
 
 }

@@ -8,6 +8,7 @@ public class OpenPopupTest extends BaseTest {
 	private WebElement element;
 	
 	public OpenPopupTest(WebDriver webDriver) {
+
 		this.setDriver(webDriver);
 	}
 	
@@ -18,7 +19,7 @@ public class OpenPopupTest extends BaseTest {
 			SearchContext context = new SearchContext(searchContext, contextValue);
 			element = getWebElement(context);	
 			element.click();
-			Thread.sleep(500);
+			Thread.sleep(2500);
 			SearchContext popupC = new SearchContext(popupContext, popupValue);
 			WebElement popupE = getWebElement(popupC);
 			
