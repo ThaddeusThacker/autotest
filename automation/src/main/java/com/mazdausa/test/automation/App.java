@@ -74,7 +74,7 @@ public class App {
         appDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 
-		appDriver.get("http://google.com");
+		appDriver.get(vlpPageUrlApproval);
 		prodDriver.get(vlpProdPageUrl);
 
 
