@@ -26,7 +26,7 @@ public class PropertyOnHoverTest extends BaseTest {
             String initialPropertyValue = element.getCssValue(cssProperty);
             Actions action = new Actions(driver);
             action.moveToElement(element).build().perform();
-            Thread.sleep(100);
+            Thread.sleep(1000);
             String hoveredPropertyValue = element.getCssValue(cssProperty);
             if(!initialPropertyValue.equals(hoveredPropertyValue)){
                 testResult = true;
@@ -66,7 +66,7 @@ public class PropertyOnHoverTest extends BaseTest {
                 String initialPropertyValue = element.getCssValue(search_property);
                 Actions action = new Actions(driver);
                 action.moveToElement(element).build().perform();
-                Thread.sleep(100);
+                Thread.sleep(1000);
                 String hoveredPropertyValue = element.getCssValue(search_property);
                 if(initialPropertyValue.equals(hoveredPropertyValue)){
                     test_result = false;

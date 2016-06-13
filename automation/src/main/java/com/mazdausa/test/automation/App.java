@@ -150,25 +150,25 @@ public class App {
 
 
 		//ExteriorColorTest
-//        ArrayList<String> chips_names = new  ArrayList<String>(Arrays.asList(props.getProperty("m3h_exterior_chips_color_names").split(",")));
-//        ArrayList<String> chips_labels = new  ArrayList<String>(Arrays.asList(props.getProperty("m3h_exterior_chips_labels").split(",")));
-//        ExteriorColorTest exteriorColorTest = new ExteriorColorTest(appDriver);
-//		Boolean exteriorColorPrepare = exteriorColorTest.prepareTests(new SearchContext(SearchContext.XPATH, props.getProperty("m3h_exterior_chips_parent_node")), chips_names,chips_labels,new SearchContext(SearchContext.XPATH, props.getProperty("m3h_exterior_chips_wrapper")));
-//        Boolean exteriorColorTestDisplayed = exteriorColorTest.testChipsDisplayed();
-//        Boolean exteriorColorTestHovered = exteriorColorTest.testChipsHover();
-//		Boolean exteriorColorTestImages = exteriorColorTest.testChipsImageUpdate();
-//        Boolean exteriorColorTestLayout = exteriorColorTest.testChipsLayout();
-//        System.out.println(exteriorColorTest.getTextOutput());
-//		System.out.println("M3H Exterior Color Component exists: " + ((exteriorColorPrepare) ? "PASS" : "FAIL"));
-//        System.out.println("M3H Exterior Color Displayed: " + ((exteriorColorTestDisplayed) ? "PASS" : "FAIL"));
-//        System.out.println("M3H Exterior Color Hovered: " + ((exteriorColorTestHovered) ? "PASS" : "FAIL"));
-//		System.out.println("M3H Exterior Color Images: " + ((exteriorColorTestImages) ? "PASS" : "FAIL"));
-//        System.out.println("M3H Exterior Color Layout: " + ((exteriorColorTestLayout) ? "PASS" : "FAIL"));
+        ArrayList<String> chips_names = new  ArrayList<String>(Arrays.asList(props.getProperty("m3h_exterior_chips_color_names").split(",")));
+        ArrayList<String> chips_labels = new  ArrayList<String>(Arrays.asList(props.getProperty("m3h_exterior_chips_labels").split(",")));
+        ExteriorColorTest exteriorColorTest = new ExteriorColorTest(appDriver);
+		Boolean exteriorColorPrepare = exteriorColorTest.prepareTests(new SearchContext(SearchContext.XPATH, props.getProperty("m3h_exterior_chips_parent_node")), chips_names,chips_labels,new SearchContext(SearchContext.XPATH, props.getProperty("m3h_exterior_chips_wrapper")));
+        Boolean exteriorColorTestDisplayed = exteriorColorTest.testChipsDisplayed();
+        Boolean exteriorColorTestHovered = exteriorColorTest.testChipsHover();
+		Boolean exteriorColorTestImages = exteriorColorTest.testChipsImageUpdate();
+        Boolean exteriorColorTestLayout = exteriorColorTest.testChipsLayout();
+        System.out.println(exteriorColorTest.getTextOutput());
+		System.out.println("M3H Exterior Color Component exists: " + ((exteriorColorPrepare) ? "PASS" : "FAIL"));
+        System.out.println("M3H Exterior Color Displayed: " + ((exteriorColorTestDisplayed) ? "PASS" : "FAIL"));
+        System.out.println("M3H Exterior Color Hovered: " + ((exteriorColorTestHovered) ? "PASS" : "FAIL"));
+		System.out.println("M3H Exterior Color Images: " + ((exteriorColorTestImages) ? "PASS" : "FAIL"));
+        System.out.println("M3H Exterior Color Layout: " + ((exteriorColorTestLayout) ? "PASS" : "FAIL"));
 
 		//InteriorColorTest
-//		InteriorColorTest intColorTest = new InteriorColorTest(appDriver);
-//		Boolean intColorTestResult = intColorTest.test("m3h", props, "http://images-approval.mazdausa.com/");
-//		System.out.println("Interior Color test: " + ((intColorTestResult) ? "PASS" : "FAIL"));
+		InteriorColorTest intColorTest = new InteriorColorTest(appDriver);
+		Boolean intColorTestResult = intColorTest.test("m3h", props, "http://images-approval.mazdausa.com/");
+		System.out.println("Interior Color test: " + ((intColorTestResult) ? "PASS" : "FAIL"));
 
 		//Open Popup disclaimer test
     	OpenPopupTest popupTest = new OpenPopupTest(appDriver);
@@ -217,7 +217,7 @@ public class App {
         //360 button Copy test
         CopyVerificationTest copyVerifyBtn = new CopyVerificationTest(appDriver, prodDriver);
         Boolean copyResultBtn = copyVerifyBtn.execute(SearchContext.XPATH, props.getProperty("m3h_360_button"));
-        System.out.println("M3H Copy 360 button Result: " + ((copyResult)? "PASS" : "FAIL"));
+        System.out.println("M3H Copy 360 button Result: " + ((copyResultBtn)? "PASS" : "FAIL"));
 
 		//Hover 360 button
 		PropertyOnHoverTest hover360Button = new PropertyOnHoverTest(appDriver);
