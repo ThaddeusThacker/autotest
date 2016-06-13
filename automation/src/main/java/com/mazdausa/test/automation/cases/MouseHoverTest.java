@@ -1,5 +1,6 @@
 package com.mazdausa.test.automation.cases;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -12,8 +13,9 @@ public class MouseHoverTest  extends BaseTest{
 	private WebElement element;
 	
 	public MouseHoverTest(WebDriver driver) {
-	       this.setDriver(driver);
+		this.setDriver(driver);
 		}
+
 		public Boolean MousHoverTest (int searchContext, String contextValue){
 			Boolean testResult = false;
 			try{
@@ -36,5 +38,4 @@ public class MouseHoverTest  extends BaseTest{
 			   return testResult;
 	
 	}
-
 }
