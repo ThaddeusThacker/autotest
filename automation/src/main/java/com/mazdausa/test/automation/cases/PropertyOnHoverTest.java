@@ -41,6 +41,12 @@ public class PropertyOnHoverTest extends BaseTest {
         return testResult;
     }
 
+    /**
+     *  Test to see if all links on the Tertiary Nav are displayed and change to a gray color when hover.
+     *
+     * The array list contains every link of the Tertiary Nav
+     */
+
     public Boolean testCollection (WebElement parent, String search_type, String search_value, String search_property){
         Boolean test_result = true;
         ArrayList<WebElement> elements;

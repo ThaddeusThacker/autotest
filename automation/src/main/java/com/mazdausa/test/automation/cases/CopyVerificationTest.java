@@ -57,6 +57,11 @@ public class CopyVerificationTest extends BaseTest {
 
 	}
 
+	/**
+	 *  This test is to compare COPY between approval and production when they have different properties (XPATH, Class..)
+	 *
+	 */
+
 	public Boolean executeNoElementMatch(int copyContextApp, String copyValueApp, int copyContextProd, String copyValueProd){
 		Boolean testResult =false;
 		try
