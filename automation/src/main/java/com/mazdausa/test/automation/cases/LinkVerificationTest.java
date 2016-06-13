@@ -5,23 +5,21 @@ import java.util.Properties;
 
 
 /**
- * Created by alina.viquez
+ *
+ * This test is to call each Tertiary Nav link, and verify the path of each link.
+ *
  */
+
 public class LinkVerificationTest extends BaseTest {
 
     private WebElement element = null;
 
-
     public LinkVerificationTest(WebDriver webDriver) {
         this.setDriver(webDriver);
     }
-
-
     public Boolean test(int searchContext, String contextValue, String targetURL) {
 
         try {
-
-
             SearchContext clickLink = new SearchContext(searchContext, contextValue);
             element = getWebElement(clickLink);
             element.click();
@@ -30,27 +28,18 @@ public class LinkVerificationTest extends BaseTest {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
-
             if (targetURL.compareTo(driver.getCurrentUrl()) == 0) {
                 testResult = true;
-
-
             } else {
                 testResult = false;
                 System.out.println("Target URL = " + targetURL);
                 System.out.println("Current URL = " + driver.getCurrentUrl());
-
             }
-
-
-
         } catch (Exception e) {
             testResult = false;
             System.out.println(e);
             e.printStackTrace();
         }
-
         return testResult;
     }
 }

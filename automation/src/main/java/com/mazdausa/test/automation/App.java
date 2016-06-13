@@ -217,7 +217,7 @@ public class App {
         //360 button Copy test
         CopyVerificationTest copyVerifyBtn = new CopyVerificationTest(appDriver, prodDriver);
         Boolean copyResultBtn = copyVerifyBtn.execute(SearchContext.XPATH, props.getProperty("m3h_360_button"));
-        System.out.println("M3H Copy 360 button Result: " + ((copyResult)? "PASS" : "FAIL"));
+        System.out.println("M3H Copy 360 button Result: " + ((copyResultBtn)? "PASS" : "FAIL"));
 
 		//Hover 360 button
 		PropertyOnHoverTest hover360Button = new PropertyOnHoverTest(appDriver);

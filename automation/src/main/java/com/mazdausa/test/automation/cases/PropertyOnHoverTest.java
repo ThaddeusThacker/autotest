@@ -26,7 +26,7 @@ public class PropertyOnHoverTest extends BaseTest {
             String initialPropertyValue = element.getCssValue(cssProperty);
             Actions action = new Actions(driver);
             action.moveToElement(element).build().perform();
-            Thread.sleep(100);
+            Thread.sleep(1000);
             String hoveredPropertyValue = element.getCssValue(cssProperty);
             if(!initialPropertyValue.equals(hoveredPropertyValue)){
                 testResult = true;
@@ -40,6 +40,12 @@ public class PropertyOnHoverTest extends BaseTest {
 
         return testResult;
     }
+
+    /**
+     *  Test to see if all links on the Tertiary Nav are displayed and change to a gray color when hover.
+     *
+     * The array list contains every link of the Tertiary Nav
+     */
 
     public Boolean testCollection (WebElement parent, String search_type, String search_value, String search_property){
         Boolean test_result = true;
@@ -60,7 +66,7 @@ public class PropertyOnHoverTest extends BaseTest {
                 String initialPropertyValue = element.getCssValue(search_property);
                 Actions action = new Actions(driver);
                 action.moveToElement(element).build().perform();
-                Thread.sleep(100);
+                Thread.sleep(1000);
                 String hoveredPropertyValue = element.getCssValue(search_property);
                 if(initialPropertyValue.equals(hoveredPropertyValue)){
                     test_result = false;
