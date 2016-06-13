@@ -12,7 +12,7 @@ import java.util.Set;
 
 
 /**
- * Created pablo.meza
+ * Created dellys.guillen
  */
 public class TabVerificationTest extends BaseTest {
 
@@ -31,7 +31,6 @@ public class TabVerificationTest extends BaseTest {
     public Boolean test(int searchContext, String contextValue, String targetURL) {
         //window identification
         String mwh = driver.getWindowHandle();
-
         try {
             SearchContext clickdropdownLink = new SearchContext(searchContext, contextValue);
             element = getWebElement(clickdropdownLink);
@@ -56,6 +55,7 @@ public class TabVerificationTest extends BaseTest {
                         System.out.println("Current URL = " + driver.getCurrentUrl());
 
                     }
+                    driver.close();
                     driver.switchTo().window(mwh);
                 }
             }

@@ -1,4 +1,5 @@
 package com.mazdausa.test.automation.cases;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,7 +28,7 @@ public class LinkDropdownVerificationTest extends BaseTest {
 
 
 
-    public Boolean test(int searchContext, String contextValue, String targetURL) {
+    public Boolean test(int searchContext, String contextValue, String targetURL,boolean alertBoolean) {
 
         try {
 
@@ -40,6 +41,10 @@ public class LinkDropdownVerificationTest extends BaseTest {
             element.click();
             try {
                 Thread.sleep(2500);
+                if (alertBoolean) {
+                    Alert alert = driver.switchTo().alert();
+                    alert.accept();
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
