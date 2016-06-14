@@ -15,18 +15,20 @@ public class Sandbox {
 	public static void main(String[] args) {
 		
 		
-		//Test commit to branch Rubio
 		TestUtil util = new TestUtil();
 
 		util.getConfigProperties("cars.properties");
+		util.getConfigProperties("m3h_vlp_properties");
 		Properties props = util.getConfigProperties("cars.properties");
+		Properties propsM3H = util.getConfigProperties("m3h_vlp_properties");
 		
 		
 		WebDriver prodDriver = new FirefoxDriver();
 		prodDriver.get("http://www.mazdausa.com/MusaWeb/displayPage.action?pageParameter=modelsMain&vehicleCode=M3H#overview");
 
 		RotateExteriorImagesTest test = new RotateExteriorImagesTest(prodDriver);
-		test.test();
+		test.test("m3h", propsM3H, props.getProperty("musa_images_prod_url"));
+		
 //		SwitchContextTest switchContext = new SwitchContextTest(prodDriver);
 //		
 //		switchContext.changeContext(SearchContext.ID, props.getProperty("musa_homepage_en_buttonId"));
