@@ -21,10 +21,14 @@ public class InteriorColorTest extends BaseTest{
 		 private String[] cssPropertyList;
 		 private Map<String, String> cssPropertyHash;
 
+
 		 public InteriorColorTest(WebDriver webDriver) {
 		        this.setDriver(webDriver);      
 		 }
-         
+
+        /**
+         *  Get required resources to run test.
+         */
 		 private void getInteriorProperties(String carCode, Properties props){
 			 
 			 cssPropertyHash = new Hashtable();
@@ -41,13 +45,19 @@ public class InteriorColorTest extends BaseTest{
 			 
 			 }
 		 }
+
+        /**
+         * Test to see if all exterior Color Chips are displayed in the browser
+         * Test to see if all Color Chips are displayed with a red ring when the color chip is hovered.
+         * Test to see if interior color image are loaded on click event for each exterior color.
+         * Test to see if for each exterior color only display the available interior color chip for that exterior color
+         */
 		 
 		 public Boolean test(String carCode, Properties props, String server){
 			 try{
 				 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 				 getInteriorProperties(carCode, props);
-			 
-		    		 
+
 				 for (String color :exteriorColorList){
 					 SearchContext colorVerification = new SearchContext(SearchContext.XPATH, props.getProperty(carCode + "_chip_ext_" + color));
 					 element = getWebElement(colorVerification);
@@ -61,7 +71,6 @@ public class InteriorColorTest extends BaseTest{
 					     WebElement interiorElement = getWebElement(intColorVerification);
 					     interiorElement.click();
 					     
-					     
 					     SearchContext intImageContext = new SearchContext(SearchContext.XPATH, props.getProperty(carCode + "_backgroundImages"));
 					     WebElement interiorImage = getWebElement(intImageContext);
 					     String imageURL = interiorImage.getAttribute("src");
@@ -71,7 +80,6 @@ public class InteriorColorTest extends BaseTest{
 					          testResult = false;
 					          System.out.println("Interior images name: " + imageURL + " is different from property: " + server + intURL);
 					     }
-					     
 					    
 					     for(int i=0; i< cssPropertyList.length; i++){
 					    	 Iterator iterator = cssPropertyHash.entrySet().iterator();
@@ -84,8 +92,7 @@ public class InteriorColorTest extends BaseTest{
 					    		 }
 					    	 }
 					     }
-					 }  		 	 
-		 
+					 }
 				 	}
 				 }catch(Exception e){
 		    	 
@@ -94,7 +101,6 @@ public class InteriorColorTest extends BaseTest{
 					 e.printStackTrace();
 		      }
 		  return testResult;
-			 
     }
 }
  

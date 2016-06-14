@@ -56,7 +56,7 @@ public class ExteriorColorTest extends BaseTest {
     }
 
     /**
-     *  Test to see if all expected Color Chips are displayed in the
+     *  Test to see if all exterior Color Chips are displayed in the
      *  browser at their expected XPath location.
      */
     public Boolean testChipsDisplayed(){
