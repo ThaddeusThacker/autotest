@@ -268,7 +268,10 @@ public class App {
 		Boolean tertiaryHoverResult = tertiaryOnHoverTest.testCollection(tertiaryParent, "tag", "a", "color");
 		System.out.println("M3H Hover Tertiary Nav: " + ((tertiaryHoverResult) ? "PASS" : "FAIL"));
 
-
+        // Tertiary Nav Copy Test
+//        CopyVerificationTest tertiaryNavCopyTest = new CopyVerificationTest(appDriver,prodDriver);
+//        Boolean tertiaryCopyResult = tertiaryNavCopyTest.testCollection(tertiaryParent, "tag", "a", "color",);
+//        System.out.println("M3H Copy Tertiary Nav: " + ((tertiaryCopyResult) ? "PASS" : "FAIL"));
 
 		// Tertiary Nav Links
 		LinkVerificationTest linkVerificationOverview = new LinkVerificationTest(appDriver);
