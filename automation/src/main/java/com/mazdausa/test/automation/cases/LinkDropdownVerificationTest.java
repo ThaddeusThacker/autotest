@@ -21,18 +21,19 @@ public class LinkDropdownVerificationTest extends BaseTest {
 
 
     public LinkDropdownVerificationTest(WebDriver webDriver) {
+
         this.setDriver(webDriver);
     }
 
 
-
-
+    /** This test case is for select the tertiary nav dropdown and call
+     * the links that open on the same tab and verify the path
+     * of each link.
+     * */
 
     public Boolean test(int searchContext, String contextValue, String targetURL,boolean alertBoolean) {
 
         try {
-
-
 
             SearchContext clickdropdownLink = new SearchContext(searchContext, contextValue);
 
@@ -49,7 +50,6 @@ public class LinkDropdownVerificationTest extends BaseTest {
                 e.printStackTrace();
             }
 
-
             if (targetURL.compareTo(driver.getCurrentUrl()) == 0) {
                 testResult = true;
 
@@ -60,8 +60,6 @@ public class LinkDropdownVerificationTest extends BaseTest {
                 System.out.println("Current URL = " + driver.getCurrentUrl());
 
             }
-
-
 
         } catch (Exception e) {
             testResult = false;

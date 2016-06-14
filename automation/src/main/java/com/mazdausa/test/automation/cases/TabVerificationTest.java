@@ -28,6 +28,9 @@ public class TabVerificationTest extends BaseTest {
     }
 
 
+    /** This test case is for select the tertiary nav dropdown and call the links that open on a new tab and verify
+     * the path of each link.
+     * */
     public Boolean test(int searchContext, String contextValue, String targetURL) {
         //window identification
         String mwh = driver.getWindowHandle();
