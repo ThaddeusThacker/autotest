@@ -259,9 +259,9 @@ public class App {
 		System.out.println("M3H Tertiary Nav Subtitle - Copy Result: " + ((tertiarySubtitleCopyResult)? "PASS" : "FAIL"));
 
 		//Tertiary Nav disclaimer Copy test
-		popupTest.test(SearchContext.XPATH, props.getProperty("m3h_tertiarynav_disclaimer_asterisk"), SearchContext.XPATH, props.getProperty("m3h_tertiarynav_disclaimer_copy_approval"));
-		popupTest2.test(SearchContext.XPATH, props.getProperty("m3h_tertiarynav_disclaimer_asterisk"), SearchContext.XPATH, props.getProperty("m3h_tertiarynav_disclaimer_copy_production"));
-		Boolean tertiaryDisclaimerCopyResult = tertiaryCopyTest.executeNoElementMatch(SearchContext.XPATH,  props.getProperty("m3h_tertiarynav_disclaimer_copy_approval"),SearchContext.XPATH,  props.getProperty("m3h_tertiarynav_disclaimer_copy_production"));
+		popupTest.test(SearchContext.XPATH, props.getProperty("m3h_tertiarynav_disclaimer_asterisk"), SearchContext.XPATH, props.getProperty("m3h_tertiarynav_disclaimer_copy"));
+		popupTest2.test(SearchContext.XPATH, props.getProperty("m3h_tertiarynav_disclaimer_asterisk"), SearchContext.XPATH, props.getProperty("m3h_tertiarynav_disclaimer_copy"));
+		Boolean tertiaryDisclaimerCopyResult = tertiaryCopyTest.execute(SearchContext.XPATH,  props.getProperty("m3h_tertiarynav_disclaimer_copy"));
 		System.out.println("M3H Tertiary Nav Disclaimer - Copy Result: " + ((tertiaryDisclaimerCopyResult)? "PASS" : "FAIL"));
 
 		// Tertiary Nav onHover Test
@@ -270,7 +270,10 @@ public class App {
 		Boolean tertiaryHoverResult = tertiaryOnHoverTest.testCollection(tertiaryParent, "tag", "a", "color");
 		System.out.println("M3H Hover Tertiary Nav: " + ((tertiaryHoverResult) ? "PASS" : "FAIL"));
 
-
+        // Tertiary Nav Copy Test
+//        CopyVerificationTest tertiaryNavCopyTest = new CopyVerificationTest(appDriver,prodDriver);
+//        Boolean tertiaryCopyResult = tertiaryNavCopyTest.testCollection(tertiaryParent, "tag", "a", "color",);
+//        System.out.println("M3H Copy Tertiary Nav: " + ((tertiaryCopyResult) ? "PASS" : "FAIL"));
 
 		// Tertiary Nav Links
 		LinkVerificationTest linkVerificationOverview = new LinkVerificationTest(appDriver);
