@@ -120,17 +120,28 @@ public class App {
 
         //test language popup
 
-//		if(switchContextProd.changeContext(SearchContext.ID, props.getProperty("musa_homepage_frameId"))){
-//            WebElement languageBtn = prodDriver.findElement(By.id(props.getProperty("musa_homepage_en_button")));
-//            languageBtn.click();
-//            try {
-//                Thread.sleep(500);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//            switchContextProd.backToDefault();
-//        }
         WebElement lang_box;
+
+		try {
+        lang_box = prodDriver.findElement(By.id(props.getProperty("musa_homepage_frameId")));
+
+            if(lang_box != null && lang_box.isDisplayed()){
+                if(switchContextApp.changeContext(SearchContext.ID, props.getProperty("musa_homepage_frameId"))){
+                    WebElement languageBtn = prodDriver.findElement(By.id(props.getProperty("musa_homepage_en_button")));
+                    languageBtn.click();
+                    try {
+                        Thread.sleep(2500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    switchContextApp.backToDefault();
+                }
+            }
+        } catch (Exception e){
+
+        }
+
+
         try {
              lang_box = appDriver.findElement(By.id(props.getProperty("musa_homepage_frameId")));
 

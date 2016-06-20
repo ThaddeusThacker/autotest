@@ -29,6 +29,15 @@ public class InteriorColorTest extends BaseTest{
         /**
          *  Get required resources to run test.
          */
+
+    /**
+     *
+     * @param carCode - Vehicle code
+     * @param props - global property handler
+     *
+     * Get required resources to run test.
+     */
+
 		 private void getInteriorProperties(String carCode, Properties props){
 			 
 			 cssPropertyHash = new Hashtable();
@@ -46,12 +55,19 @@ public class InteriorColorTest extends BaseTest{
 			 }
 		 }
 
-        /**
-         * Test to see if all exterior Color Chips are displayed in the browser
-         * Test to see if all Color Chips are displayed with a red ring when the color chip is hovered.
-         * Test to see if interior color image are loaded on click event for each exterior color.
-         * Test to see if for each exterior color only display the available interior color chip for that exterior color
-         */
+
+	/**
+	 *
+	 * @param carCode - Vehicle code
+	 * @param props - global property handler
+	 * @param server - Comparison server URL
+     * @return - wheater test fails or succeed
+     *
+     * Test to see if all exterior Color Chips are displayed in the browser
+     * Test to see if all Color Chips are displayed with a red ring when the color chip is hovered.
+     * Test to see if interior color image are loaded on click event for each exterior color.
+     * Test to see if for each exterior color only display the available interior color chip for that exterior color
+     */
 		 
 		 public Boolean test(String carCode, Properties props, String server){
 			 try{
