@@ -29,9 +29,11 @@ public class App {
 		TestUtil util = new TestUtil();
 
 		util.getConfigProperties("cars.properties");
+        util.getConfigProperties("m3h_vlp_properties");
 
 		// Open the vehicle properties config files
 		Properties props = util.getConfigProperties("cars.properties");
+        Properties propsM3H = util.getConfigProperties("m3h_vlp_properties");
 
 		String environment = null;
 		String homePageUrlProd = null;
@@ -182,6 +184,14 @@ public class App {
 		InteriorColorTest intColorTest = new InteriorColorTest(appDriver);
 		Boolean intColorTestResult = intColorTest.test("m3h", props, "http://images-approval.mazdausa.com/");
 		System.out.println("Interior Color test: " + ((intColorTestResult) ? "PASS" : "FAIL"));
+
+        //RotateImage Test
+        RotateExteriorImagesTest test = new RotateExteriorImagesTest(appDriver);
+        Boolean clockWisetestResult = test.clockWiseTest("m3h", propsM3H);
+        System.out.println("M3H Rotate Images: Tertiary Nav test: " + ((clockWisetestResult) ? "PASS" : "FAIL"));
+        Boolean rotateImageTestResult = test.test("m3h", propsM3H, propsM3H.getProperty("musa_images_prod_url"));
+        System.out.println("M3H Rotate Images: Tertiary Nav test: " + ((rotateImageTestResult) ? "PASS" : "FAIL"));
+
 
 		//Open Popup disclaimer test
     	OpenPopupTest popupTest = new OpenPopupTest(appDriver);
