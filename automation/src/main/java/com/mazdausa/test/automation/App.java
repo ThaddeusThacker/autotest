@@ -27,13 +27,14 @@ public class App {
 		// Open the configuration file which will point to all vehicle config
 		// files.
 		TestUtil util = new TestUtil();
+        TestUtil utilM3H = new TestUtil();
 
 		util.getConfigProperties("cars.properties");
-        util.getConfigProperties("m3h_vlp_properties");
+        utilM3H.getConfigProperties("m3h_vlp_properties");
 
 		// Open the vehicle properties config files
 		Properties props = util.getConfigProperties("cars.properties");
-        Properties propsM3H = util.getConfigProperties("m3h_vlp_properties");
+        Properties propsM3H = utilM3H.getConfigProperties("m3h_vlp_properties");
 
 		String environment = null;
 		String homePageUrlProd = null;
