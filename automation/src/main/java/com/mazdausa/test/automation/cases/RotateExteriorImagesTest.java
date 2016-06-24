@@ -110,7 +110,7 @@ public class RotateExteriorImagesTest extends BaseTest{
 
 				firstImageLoaded = visibleImage(children);
 
-				System.out.print(" First image was loaded " + firstImageLoaded + " for color" + color + "\n");
+				System.out.println(" First image was loaded " + firstImageLoaded + " for color" + color);
 
 				try {
 					Thread.sleep(4000);
@@ -118,17 +118,17 @@ public class RotateExteriorImagesTest extends BaseTest{
 					e.printStackTrace();
 				}
 				lastImageLoaded = visibleImage(children);
-				System.out.print(" Last image was loaded " + lastImageLoaded + " for color" + color + "\n");
+				System.out.println(" Last image was loaded " + lastImageLoaded + " for color" + color);
 				try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				if(firstImageLoaded == lastImageLoaded){
-					System.out.print("si son iguales " + firstImageLoaded + " + " + lastImageLoaded);
-					testResult = false;
-					break;
-				}
+						if(firstImageLoaded == lastImageLoaded){
+							System.out.println("Images are the same " + firstImageLoaded + " + " + lastImageLoaded);
+							testResult = false;
+							break;
+						}
 				SearchContext closeLink = new SearchContext(SearchContext.XPATH, propsM3H.getProperty(carCode + "_close_rotate_frame"));
 				WebElement rotateFrame_2 = getWebElement(closeLink);
 				rotateFrame_2.click();
