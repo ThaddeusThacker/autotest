@@ -53,7 +53,6 @@ public class RotateExteriorImagesTest extends BaseTest{
 				.build();
 
 		dragAndDrop.perform();
-
 	}
 
 	private int visibleImage(ArrayList<WebElement> children){
