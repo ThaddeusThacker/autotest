@@ -299,25 +299,25 @@ public class App {
 
 		// Tertiary Nav Links
 		LinkVerificationTest linkVerificationOverview = new LinkVerificationTest(appDriver);
-		Boolean tertiaryOverviewTestResult = linkVerificationOverview.test(SearchContext.ID,props.getProperty("m3h_tertiarynav_overview"), props.getProperty("m3h_tertiarynav_overviewlink"));
+		Boolean tertiaryOverviewTestResult = linkVerificationOverview.test(SearchContext.ID,props.getProperty("m3h_tertiarynav_overview"), props.getProperty("m3h_tertiarynav_overviewlink"), false);
 		System.out.println("M3H Overview: Tertiary Nav test: " + ((tertiaryOverviewTestResult) ? "PASS" : "FAIL"));
 
 		LinkVerificationTest linkVerificationSpecs = new LinkVerificationTest(appDriver);
-		Boolean tertiarySpecsTestResult = linkVerificationSpecs.test(SearchContext.ID,props.getProperty("m3h_tertiarynav_specs"), props.getProperty("m3h_tertiarynav_specslink"));
+		Boolean tertiarySpecsTestResult = linkVerificationSpecs.test(SearchContext.ID,props.getProperty("m3h_tertiarynav_specs"), props.getProperty("m3h_tertiarynav_specslink"), false);
 		System.out.println("M3H Specs: Tertiary Nav test: " + ((tertiarySpecsTestResult) ? "PASS" : "FAIL"));
 
 		LinkVerificationTest linkVerificationSearchInventory = new LinkVerificationTest(appDriver);
-		Boolean tertiarySearchInventoryTestResult = linkVerificationSearchInventory.test(SearchContext.XPATH,props.getProperty("m3h_tertiarynav_searchinventory"), props.getProperty("m3h_tertiarynav_searchinventorylink"));
+		Boolean tertiarySearchInventoryTestResult = linkVerificationSearchInventory.test(SearchContext.XPATH,props.getProperty("m3h_tertiarynav_searchinventory"), props.getProperty("m3h_tertiarynav_searchinventorylink"), false);
 		System.out.println("M3H Search Inventory: Tertiary Nav test: " + ((tertiarySearchInventoryTestResult) ? "PASS" : "FAIL"));
 		appDriver.get(vlpPageUrlApproval);
 
 		LinkVerificationTest linkVerificationRaq = new LinkVerificationTest(appDriver);
-		Boolean tertiaryRaqTestResult = linkVerificationRaq.test(SearchContext.XPATH,props.getProperty("m3h_tertiarynav_raq"), props.getProperty("m3h_tertiarynav_raqlink"));
+		Boolean tertiaryRaqTestResult = linkVerificationRaq.test(SearchContext.XPATH,props.getProperty("m3h_tertiarynav_raq"), props.getProperty("m3h_tertiarynav_raqlink"),false);
 		System.out.println("M3H RAQ: Tertiary Nav test: " + ((tertiaryRaqTestResult) ? "PASS" : "FAIL"));
 		appDriver.get(vlpPageUrlApproval);
 
 		LinkVerificationTest linkVerificationBtv = new LinkVerificationTest(appDriver);
-		Boolean tertiaryBtvTestResult = linkVerificationBtv.test(SearchContext.XPATH,props.getProperty("m3h_tertiarynav_buildandprice"), props.getProperty("m3h_tertiarynav_buildandpricelink"));
+		Boolean tertiaryBtvTestResult = linkVerificationBtv.test(SearchContext.XPATH,props.getProperty("m3h_tertiarynav_buildandprice"), props.getProperty("m3h_tertiarynav_buildandpricelink"),false);
 		System.out.println("M3H BTV: Tertiary Nav test: " + ((tertiaryBtvTestResult) ? "PASS" : "FAIL"));
 		appDriver.get(vlpPageUrlApproval);
 
@@ -332,22 +332,25 @@ public class App {
 		Boolean tertiaryShopHoverResult = tertiaryShopOnHoverTest.testCollection(tertiaryShopParent, "tag", "a", "color");
 		System.out.println("M3H Hover Tertiary Nav: " + ((tertiaryShopHoverResult) ? "PASS" : "FAIL"));
 
-        LinkDropdownVerificationTest linkVerificationCompare = new LinkDropdownVerificationTest(appDriver);
+        LinkVerificationTest linkVerificationCompare = new LinkVerificationTest(appDriver);
         Boolean tertiaryCompareTestResult = linkVerificationCompare.test(SearchContext.XPATH,props.getProperty("m3h_tertiarynav_compare"), props.getProperty("m3h_tertiarynav_comparelink"), false);
         System.out.println("M3H Compare: Tertiary Nav test: " + ((tertiaryCompareTestResult) ? "PASS" : "FAIL"));
         appDriver.get(vlpPageUrlApproval);
 
-        LinkDropdownVerificationTest linkVerificationLocate = new LinkDropdownVerificationTest(appDriver);
+        tertiaryShopDropdown.test(SearchContext.XPATH, props.getProperty("m3h_tertiarynav_shop"),SearchContext.XPATH, props.getProperty("m3h_tertiarynav_shop_dropdown"));
+        LinkVerificationTest linkVerificationLocate = new LinkVerificationTest(appDriver);
         Boolean tertiaryLocateTestResult = linkVerificationLocate.test(SearchContext.XPATH,props.getProperty("m3h_tertiarynav_locate"), props.getProperty("m3h_tertiarynav_locatelink"), false);
         System.out.println("M3H Locate: Tertiary Nav test: " + ((tertiaryLocateTestResult) ? "PASS" : "FAIL"));
         appDriver.get(vlpPageUrlApproval);
 
-        LinkDropdownVerificationTest linkVerificationSpecial = new LinkDropdownVerificationTest(appDriver);
+        tertiaryShopDropdown.test(SearchContext.XPATH, props.getProperty("m3h_tertiarynav_shop"),SearchContext.XPATH, props.getProperty("m3h_tertiarynav_shop_dropdown"));
+        LinkVerificationTest linkVerificationSpecial = new LinkVerificationTest(appDriver);
         Boolean tertiarySpecialTestResult = linkVerificationSpecial.test(SearchContext.XPATH,props.getProperty("m3h_tertiarynav_special"), props.getProperty("m3h_tertiarynav_speciallink"), false);
         System.out.println("M3H Special: Tertiary Nav test: " + ((tertiarySpecialTestResult) ? "PASS" : "FAIL"));
         appDriver.get(vlpPageUrlApproval);
 
-        LinkDropdownVerificationTest linkVerificationEstimate = new LinkDropdownVerificationTest(appDriver);
+        tertiaryShopDropdown.test(SearchContext.XPATH, props.getProperty("m3h_tertiarynav_shop"),SearchContext.XPATH, props.getProperty("m3h_tertiarynav_shop_dropdown"));
+        LinkVerificationTest linkVerificationEstimate = new LinkVerificationTest(appDriver);
         Boolean tertiaryEstimateTestResult = linkVerificationEstimate.test(SearchContext.XPATH,props.getProperty("m3h_tertiarynav_estimate"), props.getProperty("m3h_tertiarynav_estimatelink"), true);
         System.out.println("M3H Estimate: Tertiary Nav test: " + ((tertiaryEstimateTestResult) ? "PASS" : "FAIL"));
         appDriver.get(vlpPageUrlApproval);
@@ -355,19 +358,18 @@ public class App {
         // Tertiary Nav Shop dropdown link
 
         tertiaryShopDropdown.test(SearchContext.XPATH, props.getProperty("m3h_tertiarynav_shop"),SearchContext.XPATH, props.getProperty("m3h_tertiarynav_shop_dropdown"));
-
         TabVerificationTest linkVerificationApply = new TabVerificationTest(appDriver);
         Boolean tertiaryApplyTestResult = linkVerificationApply.test(SearchContext.XPATH, props.getProperty("m3h_tertiarynav_apply"), props.getProperty("m3h_tertiarynav_applylink"));
         System.out.println("M3H Apply: Tertiary Nav test: " + ((tertiaryApplyTestResult) ? "PASS" : "FAIL"));
         appDriver.get(vlpPageUrlApproval);
 
-        LinkDropdownVerificationTest linkVerificationGetMail = new LinkDropdownVerificationTest(appDriver);
+        tertiaryShopDropdown.test(SearchContext.XPATH, props.getProperty("m3h_tertiarynav_shop"),SearchContext.XPATH, props.getProperty("m3h_tertiarynav_shop_dropdown"));
+        LinkVerificationTest linkVerificationGetMail = new LinkVerificationTest(appDriver);
         Boolean tertiaryGetMailTestResult = linkVerificationGetMail.test(SearchContext.XPATH,props.getProperty("m3h_tertiarynav_getmail"), props.getProperty("m3h_tertiarynav_getmaillink"),false);
         System.out.println("M3H GetMail: Tertiary Nav test: " + ((tertiaryGetMailTestResult) ? "PASS" : "FAIL"));
         appDriver.get(vlpPageUrlApproval);
 
         tertiaryShopDropdown.test(SearchContext.XPATH, props.getProperty("m3h_tertiarynav_shop"),SearchContext.XPATH, props.getProperty("m3h_tertiarynav_shop_dropdown"));
-
         TabVerificationTest linkVerificationMarketplace = new TabVerificationTest(appDriver);
         Boolean tertiaryMarketplaceTestResult = linkVerificationMarketplace.test(SearchContext.XPATH, props.getProperty("m3h_tertiarynav_marketplace"), props.getProperty("m3h_tertiarynav_marketplacelink"));
         System.out.println("M3H MarketPlace: Tertiary Nav test: " + ((tertiaryMarketplaceTestResult) ? "PASS" : "FAIL"));

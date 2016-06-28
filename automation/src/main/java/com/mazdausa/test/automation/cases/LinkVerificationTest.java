@@ -1,4 +1,6 @@
 package com.mazdausa.test.automation.cases;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import java.util.Properties;
@@ -17,7 +19,7 @@ public class LinkVerificationTest extends BaseTest {
     public LinkVerificationTest(WebDriver webDriver) {
         this.setDriver(webDriver);
     }
-    public Boolean test(int searchContext, String contextValue, String targetURL) {
+    public Boolean test(int searchContext, String contextValue, String targetURL, boolean alertBoolean) {
 
         try {
             SearchContext clickLink = new SearchContext(searchContext, contextValue);
@@ -25,6 +27,10 @@ public class LinkVerificationTest extends BaseTest {
             element.click();
             try {
                 Thread.sleep(2500);
+                if (alertBoolean) {
+                    Alert alert = driver.switchTo().alert();
+                    alert.accept();
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
